@@ -1,0 +1,69 @@
+.zing-playList {
+    margin-top: 100px;
+    margin-right: 40px;
+}
+
+.zing-playList-left {
+    margin-left: 70px;
+}
+
+.playlist__list-song-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.playlist-name {
+    color: var(--white-color);
+}
+
+.zing-playlist-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lyric {
+    margin-left: 70px;
+}
+
+.lyric h2 {
+    color: var(--white-color);
+    font-size: 28px;
+}
+
+.lyric-text {
+    color: var(--white-color);
+    filter: brightness(0.8);
+    font-size: 16px;
+}
+
+.artist-img {
+    width: 80px;
+    border-radius: 100%;
+}
+
+.artist {
+    margin-top: 32px;
+    display: flex;
+}
+
+.artist-name {
+    margin-left: 12px;
+}
+
+.artist h3{
+    margin: 16px 0 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    filter: brightness(0.9);
+    color: var(--white-color);
+}
+
+.artist h2{
+    margin: 10px 0 0 0 ;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white-color);
+}
