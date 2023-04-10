@@ -11,6 +11,7 @@ public interface ISongService {
     SongModel findOneWithArtistAndAlbumAndGenres(int id);
     List<SongModel> findAll(Pageble pageble);
     List<SongModel> findAllWithArtistAndAlbumAndGenres(Pageble pageble);
+    List<SongModel> findAllByTitleStart(Pageble pageble);
     List<SongModel> findAllByTitle(Pageble pageble);
     List<SongModel> findAllByAlbumName(Pageble pageble);
     List<SongModel> findAllWithArtistAndAlbum(Pageble pageble);
@@ -19,6 +20,11 @@ public interface ISongService {
     public void update(SongModel updateSong);
     List<Integer> findAllAlbumId();
     List<SongModel> findAllByArtistName(Pageble pageble);
+    List<SongModel> findAllByCountListen();
+    List<SongModel> findSuggest();
+    List<SongModel> findAllByGenres(int genreId);
+    List<SongModel> findAllInPlaylist(int playlistId);
+    List<SongModel> findAllInAlbum(int albumId);
     public int getTotalItem();
     int getTotalItemSearchArtist(String keyword);
     int getTotalItemSearchAlbum(String keyword);

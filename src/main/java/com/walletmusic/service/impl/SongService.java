@@ -1,11 +1,15 @@
 package com.walletmusic.service.impl;
 
 import com.walletmusic.dao.ISongDAO;
+import com.walletmusic.model.GenresModel;
 import com.walletmusic.model.SongModel;
+import com.walletmusic.paging.PageRequest;
 import com.walletmusic.paging.Pageble;
 import com.walletmusic.service.ISongService;
+import com.walletmusic.sort.Sorter;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongService implements ISongService {
@@ -40,12 +44,21 @@ public class SongService implements ISongService {
     }
 
     @Override
-    public List<SongModel> findAllByTitle(Pageble pageble) {
+    public List<SongModel> findAllByTitleStart(Pageble pageble) {
+        pageble.setSearchKeyWord(pageble.getSearchKeyWord() + "%");
         return songDao.findAllByTitle(pageble);
     }
 
     @Override
+    public List<SongModel> findAllByTitle(Pageble pageble) {
+        pageble.setSearchKeyWord("%" + pageble.getSearchKeyWord() + "%");
+        return songDao.findAllByTitle(pageble);
+
+    }
+
+    @Override
     public List<SongModel> findAllByAlbumName(Pageble pageble) {
+        pageble.setSearchKeyWord("%" + pageble.getSearchKeyWord() + "%");
         return songDao.findAllByAlbumName(pageble);
     }
 
@@ -78,8 +91,49 @@ public class SongService implements ISongService {
 
     @Override
     public List<SongModel> findAllByArtistName(Pageble pageble) {
-
+        pageble.setSearchKeyWord("%" +pageble.getSearchKeyWord() +"%");
         return songDao.findAllByArtistName(pageble);
+    }
+
+    @Override
+    public List<SongModel> findAllByCountListen() {
+        Sorter sorter = new Sorter("count_listen", "desc" );
+        Pageble pageble = new PageRequest(1,100, sorter);
+        return songDao.findAllWithArtistAndAlbum(pageble);
+    }
+
+    @Override
+    public List<SongModel> findSuggest() {
+        Sorter sorter = new Sorter("count_listen", "desc" );
+        Pageble pageble = new PageRequest(1,5, sorter);
+        return songDao.findAllWithArtistAndAlbum(pageble);
+    }
+
+    @Override
+    public List<SongModel> findAllByGenres(int genreId) {
+        Sorter sorter = new Sorter("count_listen", "desc" );
+        Pageble pageble = new PageRequest(1,100, sorter);
+        List<SongModel> songs = songDao.findAllWithArtistAndAlbumAndGenres(pageble);
+        List<SongModel> result = new ArrayList<>();
+        for (SongModel song : songs) {
+            for (GenresModel genre : song.getGenresList()) {
+                if (genre.getId() == genreId) {
+                    result.add(song);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<SongModel> findAllInPlaylist(int playlistId) {
+        return songDao.findAllInPlaylist(playlistId);
+    }
+
+    @Override
+    public List<SongModel> findAllInAlbum(int albumId) {
+        return songDao.findAllInAlbum(albumId);
     }
 
     @Override
@@ -89,16 +143,19 @@ public class SongService implements ISongService {
 
     @Override
     public int getTotalItemSearchArtist(String keyword) {
+        keyword = "%" + keyword + "%";
         return songDao.getTotalItemSearchArtist(keyword);
     }
 
     @Override
     public int getTotalItemSearchAlbum(String keyword) {
+        keyword = "%" + keyword + "%";
         return songDao.getTotalItemSearchAlbum(keyword);
     }
 
     @Override
     public int getTotalItemSearchTitle(String keyword) {
+        keyword = "%" + keyword + "%";
         return songDao.getTotalItemSearchTitle(keyword);
     }
 }

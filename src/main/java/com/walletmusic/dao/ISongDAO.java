@@ -10,6 +10,7 @@ public interface ISongDAO extends GenericDAO<SongModel>{
     SongModel findOneWithGenresId(int id);
     SongModel findOneWithArtistAndAlbum(int id);
     SongModel findOneWithArtistAndAlbumAndGenres(int id);
+
     List<SongModel> findAll(Pageble pageble);
     List<SongModel> findAllWithArtistAndAlbum(Pageble pageble);
     List<SongModel> findAllWithArtistAndAlbumAndGenres(Pageble pageble);
@@ -18,10 +19,13 @@ public interface ISongDAO extends GenericDAO<SongModel>{
     List<SongModel> findAllByAlbumName(Pageble pageble);
 
     List<SongModel> findAllByArtistName(Pageble pageble);
+    List<SongModel> findAllInPlaylist(int playlistId);
+    List<SongModel> findAllInAlbum(int albumId);
 
     SongModel findArtistListById( int id);
     int save(SongModel songModel);
     void update(SongModel updateSong);
+    void updateCountlisten(int id);
     void delete(int id);
     void deleteGenreOf(int id);
     void deleteSongBy(int id);

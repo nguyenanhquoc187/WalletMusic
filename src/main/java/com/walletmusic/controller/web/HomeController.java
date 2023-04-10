@@ -1,11 +1,7 @@
 package com.walletmusic.controller.web;
 
-import com.walletmusic.model.PlaylistModel;
-import com.walletmusic.model.SongModel;
-import com.walletmusic.model.UserModel;
-import com.walletmusic.service.IPlaylistService;
-import com.walletmusic.service.ISongService;
-import com.walletmusic.service.IUserService;
+import com.walletmusic.model.*;
+import com.walletmusic.service.*;
 import com.walletmusic.service.impl.SongService;
 import com.walletmusic.utils.FormUtil;
 import com.walletmusic.utils.MessageUtil;
@@ -23,9 +19,13 @@ public class HomeController extends HttpServlet {
     @Inject
     private ISongService songService;
     @Inject
+    private IArtistService artistService;
+    @Inject
     private IUserService userService;
     @Inject
     private IPlaylistService playlistService;
+    @Inject
+    private IAlbumService albumService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
@@ -36,7 +36,12 @@ public class HomeController extends HttpServlet {
                     ((UserModel) SessionUtil.getInstance().getValue(request,"USERMODEL")).getId() ));
             request.setAttribute("playlistModel",playlistModel);
         }
-
+        AlbumModel albumModel = new AlbumModel();
+        albumModel.setListResult(albumService.findAllByCountListen());
+        ArtistModel artistModel = new ArtistModel();
+        artistModel.setListResult(artistService.findAllByTotallisten() );
+        request.setAttribute("albumModel",albumModel);
+        request.setAttribute("artistModel",artistModel);
         String action = request.getParameter("action");
         if (action != null && action.equals("login")) {
             String alert = request.getParameter("alert");

@@ -115,6 +115,8 @@
 .genres-list {
     position: absolute;
     /* display: flex; */
+    flex-direction: column;
+    align-items: center;
     z-index: 2;
     top: 0;
     right: -100px;
@@ -1309,7 +1311,7 @@
 
 .artist-name {
     position: relative;
-    /* top: 40px; */
+     top: 40px;
     left: 20px;
     font-size: 36px;
     color: var(--white-color);
@@ -1550,7 +1552,7 @@
 }
 
 .option-all__songs-list {
-    height: 241px;
+    /*height: 241px;*/
     overflow-y: auto;
 }
 

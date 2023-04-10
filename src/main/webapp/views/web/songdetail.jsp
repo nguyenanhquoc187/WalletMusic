@@ -47,13 +47,14 @@
                         <div class="zing-playList-left">
                             <div class="zing-playlist-img">
                                 <div class="zing-playlist-img-rotate">
-                                    <img style="width: 100%;" src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="">
+                                    <img style="width: 320px;" src="<c:url value ="${songModel.image}" />" alt="">
                                 </div>
-                                <h1 style="font-size: 32px; margin: 10px 0 0 0;" class="playlist-name">Anh đã lạc vào</h1>
-                                <h2 style="color: var(--white-color); font-weight: 200; filter: brightness(0.6);" class="song-artist">Green, Đại mèo remix</h2>
-                                <div class="btn option-all__song-heading-right-playall-btn js__playall-0">
-                                    Phát tất cả
-                                </div>
+                                <h1 style="font-size: 20px; margin: 10px 0 0 0;" class="playlist-name">${songModel.title}</h1>
+                                <h2 style="color: var(--white-color); font-weight: 200; filter: brightness(0.6);" class="song-artist">
+                                    <c:forEach var="artist" items="${songModel.artistList}">
+                                        ${artist.name}.
+                                    </c:forEach>
+                                </h2>
                             </div>
 
                         </div>
@@ -78,7 +79,7 @@
                                             <!-- songs-item--active -->
                                             <li class="songs-item js__song-item0" data-index="${index}">
                                                 <div class="songs-item-left">
-                                                    <div style="background-image: url(<c:url value ="/template/web/assets/img/songs/0.webp" />);"
+                                                    <div style="background-image: url(<c:url value ="${songModel.image}" />);"
                                                          class="songs-item-left-img js__songs-item-left-img-0">
                                                         <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
                                                         <div class="songs-item-left-img-playing-box">
@@ -88,29 +89,38 @@
                                                     </div>
 
                                                     <div class="songs-item-left-body">
-                                                        <a href="<c:url value ="/bai-hat" />">
-                                                            <h3 class="songs-item-left-body-name js__main-color">Anh Đã Lạc Vào</h3>
+                                                        <a href="<c:url value ="/bai-hat?id=${songModel.id}" />">
+                                                            <h3 class="songs-item-left-body-name js__main-color">${songModel.title}</h3>
                                                         </a>
-                                                        <a  href="<c:url value ="/nghe-si" />">
-                                                                <span class="songs-item-left-body-singer">Green, Đại Mèo
-                                                                    Remix</span>
-                                                        </a>
+                                                        <div style="display: flex;"  class="" >
+                                                            <c:forEach var="artist" items="${songModel.artistList}">
+                                                                <a style="margin-right: 5px;"  href="<c:url value ="/nghe-si?id=${artist.id}" />">
+                                                                    <span class="songs-item-left-body-singer">${artist.name}</span>
+                                                                </a>
+                                                            </c:forEach>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="songs-item-center    ">
-                                                    <a href="<c:url value ="/album" />"><span>Anh Đã Lạc Vào (Remix)</span></a>
+                                                    <c:if test="${empty songModel.album}">
+                                                        <a href="<c:url value ="/bai-hat?id=${songModel.id}" />"><span>${songModel.title} (Single)</span></a>
+                                                    </c:if>
+
+                                                    <c:if test="${not empty songModel.album}">
+                                                        <a href="<c:url value ="/album?id=${songModel.album.id}" />"><span>${songModel.album.name}</span></a>
+                                                    </c:if>
                                                 </div>
                                                 <div class="songs-item-right  ">
 
-                                                        <span class="songs-item-right-tym">
-                                                            <i class="fas fa-heart songs-item-right-tym-first"></i>
-                                                            <i class="far fa-heart songs-item-right-tym-last"></i>
-                                                        </span>
-                                                    <span class="songs-item-right-duration ">04:27</span>
-                                                    <span class="songs-item-right-more js__main-color"><i
-                                                            class="fas fa-ellipsis-h"></i></span>
+
+                                                    <span class="songs-item-right-duration ">${songModel.timePlay}</span>
+                                                    <span  class="songs-item-right-more js__main-color">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                        <input hidden value="${songModel.id}">
+                                                    </span>
                                                 </div>
-                                                <audio src="<c:url value="/template/web/assets/music/list-song/0.mp3" />" class="audio"></audio>
+                                                <audio src="<c:url value="${songModel.mediaUrl}" />" class="audio"></audio>
                                             </li>
 
 
@@ -150,14 +160,11 @@
                                             <a href="<c:url value ="/album" />"><span>Anh Đã Lạc Vào (Remix)</span></a>
                                         </div>
                                         <div class="songs-item-right  ">
-
-                                            <span class="songs-item-right-tym">
-                                                <i class="fas fa-heart songs-item-right-tym-first"></i>
-                                                <i class="far fa-heart songs-item-right-tym-last"></i>
-                                            </span>
                                             <span class="songs-item-right-duration ">04:27</span>
                                             <span class="songs-item-right-more js__main-color"><i
-                                                    class="fas fa-ellipsis-h"></i></span>
+                                                    class="fas fa-ellipsis-h"></i>
+                                                <input hidden value="${}">
+                                            </span>
                                         </div>
                                         <audio src="<c:url value="/template/web/assets/music/list-song/${i}.mp3" />" class="audio"></audio>
                                     </li>
@@ -173,67 +180,17 @@
                     <div class="col l-8">
                         <div class="lyric">
                             <h2>Lời bài hát</h2>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
-                            <p class="lyric-text">Đây là lời bài hát, đây là lời bài hát</p>
+                            <c:forEach var="lyric" items="${lyrics}">
+                                <p style="font-size: 16px; color: var(--white-color); margin: 10px 0">${lyric}</p>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="col l-4">
                         <div class="artist">
-                            <img  class="artist-img" src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="">
-                            <div class="artist-name">
+                            <img  class="artist-img" src="<c:url value ="${songModel.artistList.get(0).image}" />" alt="">
+                            <div style="top: 0;" class="artist-name">
                                 <h3>Nghệ sĩ</h3>
-                                <h2>Green</h2>
+                                <h2>${songModel.artistList.get(0).name}</h2>
                             </div>
                         </div>
                     </div>

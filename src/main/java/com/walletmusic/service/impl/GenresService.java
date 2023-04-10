@@ -10,6 +10,12 @@ import java.util.List;
 public class GenresService implements IGenresService {
     @Inject
     private IGenresDAO genresDao;
+
+    @Override
+    public GenresModel findOne(int id) {
+        return genresDao.findOne(id);
+    }
+
     @Override
     public List<GenresModel> findAll() {
         return genresDao.findAll();

@@ -27,6 +27,23 @@ public class ArtistService implements IArtistService {
     }
 
     @Override
+    public List<ArtistModel> findAllByTotallisten() {
+        return artistDao.findAllByTotallisten();
+    }
+
+    @Override
+    public List<ArtistModel> findAllBySearch(Pageble pageble) {
+        pageble.setSearchKeyWord("%" +pageble.getSearchKeyWord() + "%");
+        return artistDao.findAllBySearch(pageble);
+    }
+
+    @Override
+    public List<ArtistModel> findAllBySearchStart(Pageble pageble) {
+        pageble.setSearchKeyWord(pageble.getSearchKeyWord() + "%");
+        return artistDao.findAllBySearch(pageble);
+    }
+
+    @Override
     public int getTotalSong(int id) {
         return artistDao.getTotalSong(id);
     }

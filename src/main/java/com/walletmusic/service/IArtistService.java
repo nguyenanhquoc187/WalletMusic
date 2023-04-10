@@ -9,6 +9,10 @@ public interface IArtistService {
     ArtistModel findOne(int id);
     List<ArtistModel> findAll();
     List<ArtistModel> findAll(Pageble pageble);
+    List<ArtistModel> findAllByTotallisten();
+
+    public List<ArtistModel> findAllBySearch(Pageble pageble);
+    public List<ArtistModel> findAllBySearchStart(Pageble pageble);
     int getTotalSong(int id);
     int save(ArtistModel artist);
     void update(ArtistModel newArtist);

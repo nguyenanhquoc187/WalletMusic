@@ -13,6 +13,9 @@ public interface IAlbumDAO extends GenericDAO<AlbumModel> {
     List<AlbumModel> findAll();
 
     List<AlbumModel> findAll(Pageble pageble);
+    List<AlbumModel> findAllByCountListen(String search);
+    List<AlbumModel> findAllByArtist(int artistId);
+    List<AlbumModel> findAllBySearch(Pageble pageble);
     int getTotalSong(int id);
     int save(AlbumModel album);
     void update(AlbumModel newAlbum);

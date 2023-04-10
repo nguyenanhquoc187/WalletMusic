@@ -236,7 +236,8 @@ ul {
     
 .songs-item:hover .songs-item-right-mv,
 .songs-item:hover .songs-item-right-lyric,
-.songs-item:hover .songs-item-right-more{
+.songs-item:hover .songs-item-right-more,
+.songs-item:hover .songs-item-right-delete{
     display: block;
 }
 
@@ -374,7 +375,8 @@ ul {
 
 .songs-item-right-mv,
 .songs-item-right-lyric,
-.songs-item-right-more {
+.songs-item-right-more,
+.songs-item-right-delete{
     color: var(--white-color);
     font-size: 1.4rem;
     border-radius: 50%;
@@ -386,7 +388,8 @@ ul {
 .songs-item-right-tym:hover,
 .songs-item-right-mv:hover,
 .songs-item-right-lyric:hover,
-.songs-item-right-more:hover {
+.songs-item-right-more:hover,
+.songs-item-right-delete:hover{
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -398,7 +401,8 @@ ul {
     padding : 10px 14px;
 }
 
-.songs-item-right-more {
+.songs-item-right-more,
+.songs-item-right-delete {
     padding : 9px 11px;
     display: none;
     margin-left: 16px;

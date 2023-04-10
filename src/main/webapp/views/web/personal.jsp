@@ -41,7 +41,7 @@
       <div class="main-container-pertional js__container-panes active">
         <div class="profile">
           <a href="">
-            <img src="<c:url value ="/template/web/assets/img/header/user/0.jpg" />" alt="avata" class="profile__img">
+            <img src="<c:url value ="/template/web/assets/img/header/user/default-user-avatar.jpg" />" alt="avata" class="profile__img">
           </a>
           <span class="profile__name js__main-color">${USERMODEL.name}</span>
 
@@ -68,10 +68,10 @@
           <div class="grid row">
             <ul class="option-music-list songs-list">
               <!-- songs-item-playing--active-onplay songs-item--active songs-item-playbtn--active -->
-              <c:forEach begin="0" end="9" var="i">
-                <li class="songs-item js__song-item0" data-index="${index}">
+              <c:forEach var="item" items="${historyModel}">
+                <li class="songs-item js__song-item0" data-index="">
                   <div class="songs-item-left">
-                    <div style="background-image: url(<c:url value ="/template/web/assets/img/songs/${i}.webp" />);"
+                    <div style="background-image: url(<c:url value ="${item.song.image}" />);"
                          class="songs-item-left-img js__songs-item-left-img-0">
                       <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
                       <div class="songs-item-left-img-playing-box">
@@ -81,29 +81,36 @@
                     </div>
 
                     <div class="songs-item-left-body">
-                      <a href="<c:url value ="/bai-hat" />">
-                        <h3 class="songs-item-left-body-name js__main-color">Anh Đã Lạc Vào</h3>
+                      <a href="<c:url value ="/bai-hat?id=${item.song.id}" />">
+                        <h3 class="songs-item-left-body-name js__main-color">${item.song.title}</h3>
                       </a>
-                      <a  href="<c:url value ="/nghe-si" />">
-                                                <span class="songs-item-left-body-singer">Green, Đại Mèo
-                                                    Remix</span>
-                      </a>
+                      <div style="display: flex;"  class="" >
+                        <c:forEach var="artist" items="${item.song.artistList}">
+                          <a style="margin-right: 5px;"  href="<c:url value ="/nghe-si?id=${artist.id}" />">
+                            <span class="songs-item-left-body-singer">${artist.name}</span>
+                          </a>
+                        </c:forEach>
+
+                      </div>
                     </div>
                   </div>
                   <div class="songs-item-center    ">
-                    <a href="<c:url value ="/album" />"><span>Anh Đã Lạc Vào (Remix)</span></a>
+                    <c:if test="${empty item.song.album}">
+                      <a href="<c:url value ="/bai-hat?id=${item.song.id}" />"><span>${item.song.title} (Single)</span></a>
+                    </c:if>
+
+                    <c:if test="${not empty item.song.album}">
+                      <a href="<c:url value ="/album?id=${item.song.album.id}" />"><span>${item.song.album.name}</span></a>
+                    </c:if>
                   </div>
                   <div class="songs-item-right  ">
-
-                                        <span class="songs-item-right-tym">
-                                            <i class="fas fa-heart songs-item-right-tym-first"></i>
-                                            <i class="far fa-heart songs-item-right-tym-last"></i>
-                                        </span>
-                    <span class="songs-item-right-duration ">04:27</span>
-                    <span class="songs-item-right-more js__main-color"><i
-                            class="fas fa-ellipsis-h"></i></span>
+                    <span class="songs-item-right-duration ">${item.song.timePlay}</span>
+                    <span  class="songs-item-right-more js__main-color">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <input hidden value="${item.song.id}">
+                    </span>
                   </div>
-                  <audio src="<c:url value="/template/web/assets/music/list-song/${i}.mp3" />" class="audio"></audio>
+                  <audio src="<c:url value="${item.song.mediaUrl}" />" class="audio"></audio>
                 </li>
               </c:forEach>
 
@@ -115,45 +122,43 @@
           <div class="container-discover__playlist option-all__playlist option-all__margin_bot">
             <div class="option-heading option-all__playlist-heading">
               <h3 class="option-heading-name white-color js__main-color">Playlist</h3>
-
+              <div class="more-list ">
+                <span class="js__main-color">Tất cả</span>
+                <i class="fas fa-chevron-right js__main-color"></i>
+              </div>
             </div>
             <ul class="option-all__playlist-list">
               <div class="row">
-                <div class="col l-2-4 distance m-3 s-6 ">
-                  <li class="option-all__playlist-item0">
+                <div class="col l-2-4 distance ">
+                  <li style="min-height: 215px;" class="option-all__playlist-item0">
                     <i class="fas fa-plus"></i>
                     <span>Tạo playlist mới</span>
                   </li>
                 </div>
 
-                <c:forEach begin="0" end="3">
+                <c:forEach var="item" items="${playlistModel.listResult}">
                   <div class="col l-2-4 distance">
-                    <div class="option-all__playlist-item">
-                      <div class="option-all__playlist-item-img-wrapper">
+                    <li class="option-all__playlist-item">
+                      <div  class="option-all__playlist-item-img-wrapper">
                         <div class="option-all__playlist-item-img-wrapper-action">
-                          <a style="color: #fff" href="/api-playlist">
-                            <i
-                                    class="fas fa-times option-all__playlist-item-img-wrapper-action-icon1"></i>
+                          <a class="deletePlaylist" style="color: #fff" href="">
+                            <i class="fas fa-times option-all__playlist-item-img-wrapper-action-icon1"></i>
+                            <input class="playlistId" hidden value="${item.id}">
                           </a>
-                          <a style="color: #fff;" href="/playlistDetail.jsp">
-                            <i
-                                    class="fas fa-play option-all__playlist-item-img-wrapper-action-icon2"></i>
+                          <a style="color: #fff;" href="<c:url value="/playlist?id=${item.id}"/> ">
+                            <i class="fas fa-play option-all__playlist-item-img-wrapper-action-icon2"></i>
                           </a>
-                          <i
-                                  class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i>
+                          <i class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i>
                         </div>
-                        <div class="option-all__playlist-item-img"
-                             style="background-image: url(<c:url value ="/template/web/assets/img/playlist/1.webp" />);"></div>
+                        <div class="option-all__playlist-item-img" style="background-image: url(<c:url value="${item.image}"/>);"></div>
                       </div>
-                      <a style="color: var(--white-color);" href="playlistdetail.jsp">
-                        <div class="option-all__playlist-item-content">
-                          <div class="option-all__playlist-item-content-name1 js__main-color">
-                            Replay</div>
-                        </div>
-                      </a>
-                    </div>
+                      <div class="option-all__playlist-item-content">
+                        <a href="playlistdetail.jsp"><div style="color: var(--white-color);" class="option-all__playlist-item-content-name1 js__main-color">${item.name}</div></a>
+                      </div>
+                    </li>
                   </div>
                 </c:forEach>
+
 
               </div>
             </ul>
@@ -167,33 +172,30 @@
             </div>
             <ul class="option-all__playlist-list">
               <div class="row">
-                <c:forEach begin="0" end="4">
-                  <div class="col l-2-4 m-4 s-6 ">
-                    <a style="color: var(--white-color);" href="<c:url value ="/nghe-si" />">
-                      <li
-                              class="option-all__playlist-item option-all__playlist-item-margin_top  ">
-                        <div
-                                class="option-all__playlist-item-img-wrapper option-all__playlist-item-img-wrapper-mv">
-                          <div class="option-all__playlist-item-img-wrapper-action">
-                            <!-- <i class="fas fa-times option-all__playlist-item-img-wrapper-action-icon1"></i> -->
-                            <i
-                                    class="fas fa-play option-all__playlist-item-img-wrapper-action-icon2"></i>
-                            <!-- <i class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i> -->
+                <c:forEach var="item" items="${artistModel.listResult}" varStatus="loop">
+                  <c:if test="${loop.index < 5}">
+                    <div class="col l-2-4 m-4 s-6 mobile-margin-bot-30px">
+                      <a style="color: var(--white-color);" href="<c:url value ="/nghe-si?id=${item.id}" />">
+                        <li class="option-all__playlist-item option-all__playlist-item-margin_top">
+                          <div class="option-all__playlist-item-img-wrapper option-all__playlist-item-img-wrapper-mv">
+                            <div class="option-all__playlist-item-img-wrapper-action">
+                              <!-- <i class="fas fa-times option-all__playlist-item-img-wrapper-action-icon1"></i> -->
+                              <i class="fas fa-play option-all__playlist-item-img-wrapper-action-icon2"></i>
+                              <!-- <i class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i> -->
+                            </div>
+                            <div class="option-all__playlist-item-img option-all__playlist-item-img-singer" style="background-image: url(<c:url value ="${item.image}" />);"></div>
                           </div>
-                          <div class="option-all__playlist-item-img option-all__playlist-item-img-singer"
-                               style="background-image: url(<c:url value ="/template/web/assets/img/singer/1.webp" />);">
-                          </div>
-                        </div>
-                        <div class="option-all__playlist-item-content-singer">
-                          <div
-                                  class="option-all__playlist-item-content-singer-name1 js__main-color">
-                            Mr.Siro</div>
+                          <div class="option-all__playlist-item-content-singer">
+                            <div class="option-all__playlist-item-content-singer-name1 js__main-color">${item.name}</div>
 
-                        </div>
-                      </li>
-                    </a>
-                  </div>
+                          </div>
+                        </li>
+                      </a>
+                    </div>
+                  </c:if>
                 </c:forEach>
+
+
               </div>
             </ul>
           </div>

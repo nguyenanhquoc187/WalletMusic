@@ -57,118 +57,7 @@ var backgroundIndex= 0;
 const app = {
     // sliderIndex: 0,
     songsData : [
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/0.webp',
-        //     name: 'Anh Đã Lạc Vào',
-        //     singer: 'Green, Đại Mèo Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/0.mp3',
-        //     duration : '04:27',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/1.webp',
-        //     name: 'Chạy Về Khóc Với Anh',
-        //     singer: 'Erik, Duzme Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/1.mp3',
-        //     duration : '04:05',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/2.jpeg',
-        //     name: 'Sẵn Sàng Yêu Em Đi Thôi',
-        //     singer: 'Woni, Minh Tú, Đại Mèo Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/2.mp3',
-        //     duration : '05:16',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/3.webp',
-        //     name: 'Gieo Quẻ',
-        //     singer: 'Hoàng Thuỳ Linh, ĐEN, Orinn Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/3.mp3',
-        //     duration : '04:27',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/4.webp',
-        //     name: 'Vui Lắm Nha',
-        //     singer: 'Hương Ly, Jombie, RIN Music Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/4.m4a',
-        //     duration : '05:16',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/5.webp',
-        //     name: 'Lưu Số Em Đi',
-        //     singer: 'Huỳnh Văn, V.P. Tiên, Đại Mèo Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/5.m4a',
-        //     duration : '04:10',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/6.webp',
-        //     name: 'Như Một Người Dưng',
-        //     singer: 'Nguyễn Thạc Bảo Ngọc, Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/6.mp3',
-        //     duration : '05:05',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/7.webp',
-        //     name: 'Ôm Nhiều Mộng Mơ',
-        //     singer: 'Phát Huy T4, Đại Mèo Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/7.m4a',
-        //     duration : '03:16',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/8.jpg',
-        //     name: 'Tình Yêu Ngủ Quên',
-        //     singer: 'Hoàng Tôn, LyHan, Orinn Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/8.mp3',
-        //     duration : '04:27',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/9.webp',
-        //     name: 'Không Bằng',
-        //     singer: 'Na, RIN Music Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/9.m4a',
-        //     duration : '03:23',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/10.webp',
-        //     name: 'Ai Chung Tình Được Mãi',
-        //     singer: 'Đinh Tùng Huy, ACV Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/10.m4a',
-        //     duration : '03:55',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/11.webp',
-        //     name: 'Cô Đơn Dành Cho Ai',
-        //     singer: 'NAL, LEE KEN, Orinn Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/11.m4a',
-        //     duration : '04:45',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/12.webp',
-        //     name: 'Ánh mắt ta chạm nhau',
-        //     singer: 'Ngô Lan Hương, Đại Mèo remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/12.m4a',
-        //     duration : '06:01',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/13.webp',
-        //     name: '2 Phút Hơn',
-        //     singer: 'Phao, KAIZ Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/13.m4a',
-        //     duration : '05:02',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/14.webp',
-        //     name: 'Là Ai Từ Bỏ Là Ai Vô Tình',
-        //     singer: 'Hương Ly, Jombie (G5R), RIN Music Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/14.m4a',
-        //     duration : '03:25',
-        // },
-        // {
-        //     background: '/WalletMusic_war_exploded/template/web/assets/img/songs/2.jpeg',
-        //     name: 'Yêu Đừng Sợ Đau',
-        //     singer: 'Ngô Lan Hương, Cukak Remix',
-        //     pathSong: '/WalletMusic_war_exploded/template/web/assets/music/list-song/15.m4a',
-        //     duration : '03:51',
-        // },
+
     ],
     currentIndex : 0,
     isPlaying: false,
@@ -287,12 +176,12 @@ const app = {
         })
     },
 
-    hiddenTym: function() {
-        $('.music-control__left-action-tym').style.display = 'none';
-        $$('.songs-item-right-tym').forEach((item) => {
-            item.style.display = 'none';
-        });
-    },
+    // hiddenTym: function() {
+    //     $('.music-control__left-action-tym').style.display = 'none';
+    //     $$('.songs-item-right-tym').forEach((item) => {
+    //         item.style.display = 'none';
+    //     });
+    // },
 
     // SỰ KIỆN VÀ XỬ LÝ
     handleEvents: function () {
@@ -301,7 +190,7 @@ const app = {
         const playBtnIcons = $$('.js__songs-item-left-img-0');
 
 
-        this.hiddenTym();
+        // this.hiddenTym();
         // chuyển tab option
         tabs.forEach((tab, index) => {
             const pane = panes[index];
@@ -335,9 +224,9 @@ const app = {
         });
 
         // CLICK TYM Ở NOW PLAYER
-        musicNowTym.onclick = function() {
-            this.classList.toggle('music-control__left-action-tym-box-active');
-        }
+        // musicNowTym.onclick = function() {
+        //     this.classList.toggle('music-control__left-action-tym-box-active');
+        // }
 
         // BẬT TĂT MUTE Ở VOLUME
         volumeIcon.onclick = function() {
@@ -393,12 +282,31 @@ const app = {
             playBtn.classList.add('music-control__icon-play--active');
             thunbPlayerBox.style.transform = "translateX(20px)";
 
-            // if (songItems.lenght > 0) {
-                songItems[_this.currentIndex].classList.add('songs-item-playing--active-onplay');
-                songItems[_this.currentIndex].classList.add('songs-item--active');
-                songItems[_this.currentIndex].classList.remove('songs-item-playbtn--active');
-            // }
+            songItems[_this.currentIndex].classList.add('songs-item-playing--active-onplay');
+            songItems[_this.currentIndex].classList.add('songs-item--active');
+            songItems[_this.currentIndex].classList.remove('songs-item-playbtn--active');
 
+            let href = $('.songs-item-playing--active-onplay').getElementsByClassName('songs-item-left-body')[0]
+                .getElementsByTagName("a")[0].href;
+            var songId = href.substring(href.search('=')+1);
+            // send request thêm lịch sử
+
+            let send = async function addHistory() {
+                try {
+                    let url = "http://localhost:8080/WalletMusic_war_exploded/api-user?songId=" + songId;
+                    const response = await fetch(url, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    const result = await response.json();
+                } catch (error) {
+                    // window.location.href = "http://localhost:8080/WalletMusic_war_exploded/trang-chu";
+                }
+            }
+            send();
         };
 
         // KHI SONG BỊ PAUSE
@@ -597,15 +505,72 @@ const app = {
 
             $$('.songs-item-right-more').forEach((item) => {
                item.onclick = function() {
+
+                   if ($('.add-playlist') === null) {
+                       let alert = $('.div-alert');
+                       const htmlString = `
+                                        <div class="alert alert-error">
+                                            Vui lòng đăng nhập để sử dụng chức năng này
+                                        </div>
+                                    `;
+                       alert.innerHTML = htmlString;
+                   }
+
                     $('.add-playlist').classList.add('show');
                     $('#overlay-add-playlist').classList.add('show');
+                   $$('.form__add-song').forEach((it) => {
+                       it.onclick = function () {
+                            let songId = item.getElementsByTagName("input")[0].value;
+                            let playlistId = it.getElementsByTagName("input")[0].value;
+                            let url = "http://localhost:8080/WalletMusic_war_exploded/api-playlistInc";
+                            url = url + "?playlistId=" + playlistId + "&" + "songId=" + songId;
+                            var alert = $('.div-alert');
+                            var alertType = "success";
+                            var message = "Thêm thành công";
+                           fetch(url, {
+                               method: 'POST',
+                           })
+                               .then(response => response.json()) // chuyển đổi response sang dạng JSON
+                               .then(data => {
+                                   closeAddPlaylist();
+
+                                   const htmlString = `
+                                        <div class="alert alert-${alertType}">
+                                            ${message}
+                                        </div>
+                                    `;
+                                   alert.innerHTML = htmlString;
+
+                               })
+                               .catch(error => {
+                                   closeAddPlaylist();
+                                   alertType = "error";
+                                   message = "Bài hát đã có trong playlist";
+
+                                   const htmlString = `
+                                        <div class="alert alert-${alertType}">
+                                            ${message}
+                                        </div>
+                                    `;
+                                   alert.innerHTML = htmlString;
+                               });
+                       }
+                   });
                 }
+
+
             });
 
-            $('.add-close').onclick = closeAddPlaylist;
+            if ($('.add-close') !== null) {
+                $('.add-close').onclick = closeAddPlaylist;
+            }
+            if ($('#overlay-add-playlist') !== null) $('#overlay-add-playlist').onclick = closeAddPlaylist;
 
-            $('#overlay-add-playlist').onclick = closeAddPlaylist;
+
+
         }
+
+
 
         // Xử lý khung register
         function closeRegister() {
@@ -668,7 +633,7 @@ const app = {
             let text = this.value;
             if (event.key === "Enter" && text !== '') {
 
-                window.location.href = 'http://localhost:8080/WalletMusic_war_exploded/tim-kiem?' + text;
+                window.location.href = 'http://localhost:8080/WalletMusic_war_exploded/tim-kiem?keyword=' + text;
             }
         };
 
@@ -676,6 +641,30 @@ const app = {
             $('.js__suggest-keywords').style.display = 'none';
             $('.js_overlay-search').classList.add('show');
             $('.js__related-keywords').style.display = 'block';
+            let url = "http://localhost:8080/WalletMusic_war_exploded/api-search?keyword=" + search.value;
+            if (search.value.length > 0) {
+                fetch(url)
+                    .then(respond => respond.json())
+                    .then(data => {
+                        console.log(data);
+                        const listResult = data['result'];
+                        listResult.forEach((item) => {
+                            var listSearch = $('.js-search');
+                            const htmls = listResult.map((song,index) => {
+                                return index < 5 ? `<li class="header__width-search-sub-item">
+                                    <a  href="http://localhost:8080/WalletMusic_war_exploded/tim-kiem?keyword=${song}" class="header__width-search-sub-item-link">
+                                        <i class="fas fa-arrows-alt-h "></i>
+                                        <span class="">${song}</span>
+                                    </a>
+                                </li>` : ''
+                            })
+
+                            listSearch.innerHTML = htmls.join('');
+
+                        })
+                    })
+            }
+
 
         }
 
@@ -777,8 +766,6 @@ function loadListSong() {
 }
 
 loadListSong();
-
-
 app.start();
 
 

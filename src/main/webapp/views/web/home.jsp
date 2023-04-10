@@ -115,10 +115,10 @@
           </div>
           <ul class="option-all__playlist-list">
             <div class="row">
-              <c:forEach begin="0" end="4">
+              <c:forEach var="item" items="${albumModel.listResult}">
                 <div class="col l-2-4 distance">
                   <div class="option-all__playlist-item">
-                    <a href="<c:url value ="/album" />">
+                    <a href="<c:url value ="/album?id=${item.id}" />">
                       <div class="option-all__playlist-item-img-wrapper">
                         <div class="option-all__playlist-item-img-wrapper-action">
 
@@ -129,13 +129,13 @@
 
                         </div>
                         <div class="option-all__playlist-item-img"
-                             style="background-image: url(<c:url value="/template/web/assets/img/playlist/1.webp" />);"></div>
+                             style="background-image: url(<c:url value="${item.image}" />);"></div>
                       </div>
                     </a>
-                    <a style="color: var(--white-color);" href="<c:url value ="/album" />">
+                    <a style="color: var(--white-color);" href="<c:url value ="/album?id=${item.id}" />">
                       <div class="option-all__playlist-item-content">
                         <div class="option-all__playlist-item-content-name1 js__main-color">
-                          Replay</div>
+                          ${item.name}</div>
                       </div>
                     </a>
                   </div>
@@ -155,9 +155,9 @@
             </div>
             <ul class="option-all__playlist-list">
               <div class="row">
-                <c:forEach begin="0" end="4">
+                <c:forEach var="item" items="${artistModel.listResult}">
                   <div class="col l-2-4 m-4 s-6 ">
-                    <a style="color: var(--white-color);" href="<c:url value ="/nghe-si" />">
+                    <a style="color: var(--white-color);" href="<c:url value ="/nghe-si?id=${item.id}" />">
                       <li
                               class="option-all__playlist-item option-all__playlist-item-margin_top  ">
                         <div
@@ -169,13 +169,13 @@
                             <!-- <i class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i> -->
                           </div>
                           <div class="option-all__playlist-item-img option-all__playlist-item-img-singer"
-                               style="background-image: url(<c:url value="/template/web/assets/img/singer/1.webp" />);">
+                               style="background-image: url(<c:url value="${item.image}" />);">
                           </div>
                         </div>
                         <div class="option-all__playlist-item-content-singer">
                           <div
                                   class="option-all__playlist-item-content-singer-name1 js__main-color">
-                            Mr.Siro</div>
+                            ${item.name}</div>
 
                         </div>
                       </li>

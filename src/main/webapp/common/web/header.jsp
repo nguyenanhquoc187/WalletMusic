@@ -16,73 +16,25 @@
                 <div class="overlay-search" ></div>
                 <span class="header__width-search-sub-header js__main-color">Đề xuất cho bạn</span>
                 <ul class="header__width-search-sub-list ">
-                    <li class="header__width-search-sub-item">
-                        <a  href="<c:url value ="/tim-kiem" />" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Đập vỡ cây đàn</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="<c:url value ="/tim-kiem" />" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Vợ người ta</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="#" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Ưng quá chừng</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="#" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Bùa yêu</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="#" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Em của ngày hôm qua</span>
-                        </a>
-                    </li>
+
+                    <c:forEach items="${songSuggest.listResult}" var="item">
+                        <li class="header__width-search-sub-item">
+                            <a  href="<c:url value ="/tim-kiem?keyword=${item.title}" />" class="header__width-search-sub-item-link">
+                                <i class="fas fa-arrows-alt-h "></i>
+                                <span class="">${item.title}</span>
+                            </a>
+                        </li>
+                    </c:forEach>
+
+
+
                 </ul>
             </div>
 
             <div style="display: none;" class="header__width-search-sub js__related-keywords">
                 <div class="overlay-search js_overlay-search" ></div>
                 <span class="header__width-search-sub-header js__main-color">Từ khoá liên quan</span>
-                <ul class="header__width-search-sub-list ">
-                    <li class="header__width-search-sub-item">
-                        <a  href="<c:url value ="/tim-kiem" />" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Vợ người ta</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="<c:url value ="/tim-kiem" />" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Chạy ngay đi</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="#" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Có chàng trai viết lên cây</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="#" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Sóng gió</span>
-                        </a>
-                    </li>
-                    <li class="header__width-search-sub-item">
-                        <a href="#" class="header__width-search-sub-item-link">
-                            <i class="fas fa-arrows-alt-h "></i>
-                            <span class="">Anh đã lạc vào</span>
-                        </a>
-                    </li>
+                <ul class="header__width-search-sub-list js-search">
                 </ul>
             </div>
 
@@ -190,7 +142,7 @@
 
                 <div style="display: ${empty USERMODEL ? "none" : "block"}"   class="header__user">
                     <!-- <a href=""> -->
-                    <img src="<c:url value="/template/web/assets/img/header/user/0.jpg"/>" alt="user" class="header__user-img">
+                    <img src="<c:url value="/template/web/assets/img/header/user/default-user-avatar.jpg"/>" alt="user" class="header__user-img">
                     <!-- </a> -->
                     <ul class="header__user-setting-list">
                         <a href="">

@@ -10,20 +10,15 @@
       <i class="fas fa-times"></i>
     </button>
     <h3 style="margin-top: 30px;" class="create-content__playlist-title">Thêm bài hát vào playlist</h3>
-    <!-- <span style="color: var(--white-color);" class="header__setting-line"></span> -->
     <ul class="playlist-list">
-      <li class="playlist-item">Replay</li>
-      <span style="color: var(--white-color);" class="header__setting-line"></span>
-      <li class="playlist-item">Replay</li>
-      <span style="color: var(--white-color);" class="header__setting-line"></span>
-      <li class="playlist-item">Replay</li>
-      <span style="color: var(--white-color);" class="header__setting-line"></span>
-      <li class="playlist-item">Replay</li>
-      <span style="color: var(--white-color);" class="header__setting-line"></span>
-      <li class="playlist-item">Replay</li>
-      <span style="color: var(--white-color);" class="header__setting-line"></span>
-      <li class="playlist-item">Replay</li>
-      <span style="color: var(--white-color);" class="header__setting-line"></span>
+      <c:forEach items="${playlistModel.listResult}" var="item">
+        <form class="form__add-song">
+          <li class="playlist-item">${item.name}</li>
+          <span style="color: var(--white-color);" class="header__setting-line"></span>
+          <input hidden value="${item.id}">
+        </form>
+      </c:forEach>
+
     </ul>
   </div>
 </div>

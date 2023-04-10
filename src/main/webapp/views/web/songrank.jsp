@@ -45,55 +45,13 @@
                 </div>
                 <ul class="zingchart__list js__zingchart__list">
 
-                    <c:forEach begin="0" end="9" var="i">
-                        <li class="songs-item js__song-item0" data-index="${index}">
-                            <div class="songs-item-left">
-                                <span class="zingchart__item-left-stt zingchart__item-<c:choose><c:when test="${i==0}">first</c:when><c:when test="${i==1}">second</c:when><c:when test="${i==2}">third</c:when></c:choose>">${i+1}</span>
-                                <span class="zingchart__item-left-line js__main-color">-</span>
-                                <div style="background-image: url(<c:url value ="/template/web/assets/img/songs/${i}.webp" />);"
-                                     class="songs-item-left-img js__songs-item-left-img-0">
-                                    <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
-                                    <div class="songs-item-left-img-playing-box">
-                                        <img class="songs-item-left-img-playing"
-                                             src="<c:url value ="/template/web/assets/img/songs/icon-playing.gif" />" alt="playing">
-                                    </div>
-                                </div>
-
-                                <div class="songs-item-left-body">
-                                    <a href="<c:url value ="/bai-hat" />">
-                                        <h3 class="songs-item-left-body-name js__main-color">Anh Đã Lạc Vào</h3>
-                                    </a>
-                                    <a  href="<c:url value ="/nghe-si" />">
-                                        <span class="songs-item-left-body-singer">Green, Đại Mèo
-                                            Remix</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="songs-item-center    ">
-                                <a href="<c:url value ="/album" />"><span>Anh Đã Lạc Vào (Remix)</span></a>
-                            </div>
-                            <div class="songs-item-right  ">
-
-                                <span class="songs-item-right-tym">
-                                    <i class="fas fa-heart songs-item-right-tym-first"></i>
-                                    <i class="far fa-heart songs-item-right-tym-last"></i>
-                                </span>
-                                <span class="songs-item-right-duration ">04:27</span>
-                                <span class="songs-item-right-more js__main-color"><i
-                                        class="fas fa-ellipsis-h"></i></span>
-                            </div>
-                            <audio src="<c:url value="/template/web/assets/music/list-song/${i}.mp3" />" class="audio"></audio>
-                        </li>
-                    </c:forEach>
-
-
-                    <div class="zingchart__more-rank">
-                        <c:forEach begin="10" end="15" var="i">
-                            <li class="songs-item js__song-item0" data-index="${index}">
+                    <c:forEach var="item" items="${songModel.listResult}" varStatus="loop" >
+                        <c:if test="${loop.index < 10}">
+                            <li class="songs-item js__song-item0" data-index="${loop.index}">
                                 <div class="songs-item-left">
-                                    <span class="zingchart__item-left-stt zingchart__item-stt">${i+1}</span>
+                                    <span class="zingchart__item-left-stt zingchart__item-<c:choose><c:when test="${loop.index==0}">first</c:when><c:when test="${loop.index==1}">second</c:when><c:when test="${loop.index==2}">third</c:when></c:choose>">${loop.index+1}</span>
                                     <span class="zingchart__item-left-line js__main-color">-</span>
-                                    <div style="background-image: url(<c:url value ="/template/web/assets/img/songs/${i}.webp" />);"
+                                    <div style="background-image: url(<c:url value ="${item.image}" />);"
                                          class="songs-item-left-img js__songs-item-left-img-0">
                                         <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
                                         <div class="songs-item-left-img-playing-box">
@@ -103,30 +61,102 @@
                                     </div>
 
                                     <div class="songs-item-left-body">
-                                        <a href="<c:url value ="/bai-hat" />">
-                                            <h3 class="songs-item-left-body-name js__main-color">Anh Đã Lạc Vào</h3>
+                                        <a href="<c:url value ="/bai-hat?id=${item.id}" />">
+                                            <h3 class="songs-item-left-body-name js__main-color">${item.title}</h3>
                                         </a>
-                                        <a  href="<c:url value ="/nghe-si" />">
-                                            <span class="songs-item-left-body-singer">Green, Đại Mèo
-                                                Remix</span>
-                                        </a>
+                                        <div style="display: flex;"  class="" >
+                                            <c:forEach var="artist" items="${item.artistList}">
+                                                <a style="margin-right: 5px;"  href="<c:url value ="/nghe-si?id=${artist.id}" />">
+                                                    <span class="songs-item-left-body-singer">${artist.name}</span>
+                                                </a>
+                                            </c:forEach>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="songs-item-center    ">
-                                    <a href="<c:url value ="/album" />"><span>Anh Đã Lạc Vào (Remix)</span></a>
+                                    <c:if test="${empty item.album}">
+                                        <a href="<c:url value ="/bai-hat?id=${item.id}" />"><span>${item.title} (Single)</span></a>
+                                    </c:if>
+
+                                    <c:if test="${not empty item.album}">
+                                        <a href="<c:url value ="/album?id=${item.album.id}" />"><span>${item.album.name}</span></a>
+                                    </c:if>
+
                                 </div>
                                 <div class="songs-item-right  ">
+
+<%--                                <span class="songs-item-right-tym">--%>
+<%--                                    <i class="fas fa-heart songs-item-right-tym-first"></i>--%>
+<%--                                    <i class="far fa-heart songs-item-right-tym-last"></i>--%>
+<%--                                </span>--%>
+                                    <span class="songs-item-right-duration ">${item.timePlay}</span>
+                                    <span  class="songs-item-right-more js__main-color">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <input hidden value="${item.id}">
+                                    </span>
+                                </div>
+                                <audio src="<c:url value="${item.mediaUrl}" />" class="audio"></audio>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+
+
+                    <div class="zingchart__more-rank">
+                        <c:forEach  var="item" items="${songModel.listResult}" varStatus="loop" >
+                            <c:if test="${loop.index >= 10}">
+                                <li class="songs-item js__song-item0" data-index="${loop.index}">
+                                    <div class="songs-item-left">
+                                        <span class="zingchart__item-left-stt zingchart__item-stt">${loop.index+1}</span>
+                                        <span class="zingchart__item-left-line js__main-color">-</span>
+                                        <div style="background-image: url(<c:url value ="${item.image}" />);"
+                                             class="songs-item-left-img js__songs-item-left-img-0">
+                                            <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
+                                            <div class="songs-item-left-img-playing-box">
+                                                <img class="songs-item-left-img-playing"
+                                                     src="<c:url value ="/template/web/assets/img/songs/icon-playing.gif" />" alt="playing">
+                                            </div>
+                                        </div>
+
+                                        <div class="songs-item-left-body">
+                                            <a href="<c:url value ="/bai-hat?id=${item.id}" />">
+                                                <h3 class="songs-item-left-body-name js__main-color">${item.title}</h3>
+                                            </a>
+
+                                            <div style="display: flex;"  class="" id="">
+                                                <c:forEach var="artist" items="${item.artistList}">
+                                                    <a style="margin-right: 5px;"  href="<c:url value ="/nghe-si?id=${artist.id}" />">
+                                                        <span class="songs-item-left-body-singer">${artist.name}</span>
+                                                    </a>
+                                                </c:forEach>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="songs-item-center    ">
+                                        <c:if test="${empty item.album}">
+                                            <a href="<c:url value ="/bai-hat?id=${item.id}" />"><span>${item.title} (Single)</span></a>
+                                        </c:if>
+
+                                        <c:if test="${not empty item.album}">
+                                            <a href="<c:url value ="/album?id=${item.album.id}" />"><span>${item.album.name}</span></a>
+                                        </c:if>
+                                    </div>
+                                    <div class="songs-item-right  ">
 
                                     <span class="songs-item-right-tym">
                                         <i class="fas fa-heart songs-item-right-tym-first"></i>
                                         <i class="far fa-heart songs-item-right-tym-last"></i>
                                     </span>
-                                    <span class="songs-item-right-duration ">04:27</span>
-                                    <span class="songs-item-right-more js__main-color"><i
-                                            class="fas fa-ellipsis-h"></i></span>
-                                </div>
-                                <audio src="<c:url value="/template/web/assets/music/list-song/${i}.mp3" />" class="audio"></audio>
-                            </li>
+                                        <span class="songs-item-right-duration ">${item.timePlay}</span>
+                                        <span class="songs-item-right-more js__main-color"><i
+                                                class="fas fa-ellipsis-h"></i>
+                                            <input hidden value="${item.id}">
+                                        </span>
+                                    </div>
+                                    <audio src="<c:url value="${item.mediaUrl}" />" class="audio"></audio>
+                                </li>
+                            </c:if>
 
                         </c:forEach>
 
@@ -138,295 +168,295 @@
                 <div class="zingchart__100more">
                     <span class="zingchart__100more-body js__main-color js__border js__zingchart__100more">Xem top 100</span>
                 </div>
-                <div class="zingchart-week__headding zingchart__headding js__main-color">Bảng Xếp Hạng Tuần</div>
-                <div class="row">
-                    <div class="col l-4 laptop-l-6 m-12 s-12">
-                        <div class="zingchart-week__item-wrapper js__backgroundColor">
-                            <span class="zingchart-week__headding js__main-color">Nhạc trẻ</span>
-                            <ul class="zingchart-week__list">
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                <div class="zingchart-week__headding zingchart__headding js__main-color">Bảng Xếp Hạng Tuần</div>--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col l-4 laptop-l-6 m-12 s-12">--%>
+<%--                        <div class="zingchart-week__item-wrapper js__backgroundColor">--%>
+<%--                            <span class="zingchart-week__headding js__main-color">Nhạc trẻ</span>--%>
+<%--                            <ul class="zingchart-week__list">--%>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                            </ul>
-                            <div class="zingchart__100more zingchart-week__100more">
-                                <a href="<c:url value ="/the-loai" />?nhac-tre"><span class="zingchart__100more-body js__main-color js__border">Xem tất cả</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-4 laptop-l-6 m-12 s-12">
-                        <div class="zingchart-week__item-wrapper js__backgroundColor">
-                            <span class="zingchart-week__headding js__main-color">Nhạc thiếu nhi</span>
-                            <ul class="zingchart-week__list">
-                                <a style="cursor: pointer;" href="/<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                            </ul>--%>
+<%--                            <div class="zingchart__100more zingchart-week__100more">--%>
+<%--                                <a href="<c:url value ="/the-loai" />?nhac-tre"><span class="zingchart__100more-body js__main-color js__border">Xem tất cả</span></a>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col l-4 laptop-l-6 m-12 s-12">--%>
+<%--                        <div class="zingchart-week__item-wrapper js__backgroundColor">--%>
+<%--                            <span class="zingchart-week__headding js__main-color">Nhạc thiếu nhi</span>--%>
+<%--                            <ul class="zingchart-week__list">--%>
+<%--                                <a style="cursor: pointer;" href="/<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                            </ul>
-                            <div class="zingchart__100more zingchart-week__100more">
-                                <a href="<c:url value ="/the-loai" />?nhac-thieu-nhi"><span class="zingchart__100more-body js__main-color js__border">Xem tất cả</span></a>
-                            </div>
-                        </div>
-                    </div>
+<%--                            </ul>--%>
+<%--                            <div class="zingchart__100more zingchart-week__100more">--%>
+<%--                                <a href="<c:url value ="/the-loai" />?nhac-thieu-nhi"><span class="zingchart__100more-body js__main-color js__border">Xem tất cả</span></a>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
-                    <div class="col l-4 laptop-l-6 m-12 s-12">
-                        <div class="zingchart-week__item-wrapper js__backgroundColor">
-                            <span class="zingchart-week__headding js__main-color">Nhạc trữ tình</span>
-                            <ul class="zingchart-week__list">
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                    <div class="col l-4 laptop-l-6 m-12 s-12">--%>
+<%--                        <div class="zingchart-week__item-wrapper js__backgroundColor">--%>
+<%--                            <span class="zingchart-week__headding js__main-color">Nhạc trữ tình</span>--%>
+<%--                            <ul class="zingchart-week__list">--%>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">
-                                    <li class="zingchart-week__item">
-                                        <div class="zingchart-week__item-left">
-                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>
-                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>
-                                        </div>
-                                        <div class="zingchart-week__item-center">
-                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">
-                                            <div class="zingchart-week__item-center-content">
-                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>
-                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>
-                                            </div>
-                                        </div>
-                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>
-                                    </li>
-                                </a>
+<%--                                <a style="cursor: pointer;" href="<c:url value ="/bai-hat" />">--%>
+<%--                                    <li class="zingchart-week__item">--%>
+<%--                                        <div class="zingchart-week__item-left">--%>
+<%--                                            <span class="zingchart__item-left-stt zingchart-week__item-left-stt">1</span>--%>
+<%--                                            <span class="zingchart__item-left-line zingchart-week__item-left-line">-</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-center">--%>
+<%--                                            <img src="<c:url value ="/template/web/assets/img/songs/0.webp" />" alt="anh" class="zingchart-week__item-center-img">--%>
+<%--                                            <div class="zingchart-week__item-center-content">--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-name">Tình Yêu Ngủ Quên</span>--%>
+<%--                                                <span class="js__main-color zingchart-week__item-center-content-singer">Hoàng Tôn, LyHan, Orinn Remix</span>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="zingchart-week__item-right  js__main-color">05:08</div>--%>
+<%--                                    </li>--%>
+<%--                                </a>--%>
 
-                            </ul>
-                            <div class="zingchart__100more zingchart-week__100more">
-                                <a href="/<c:url value ="/the-loai" />?nhac-tru-tinh"><span class="zingchart__100more-body js__main-color js__border">Xem tất cả</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                            </ul>--%>
+<%--                            <div class="zingchart__100more zingchart-week__100more">--%>
+<%--                                <a href="/<c:url value ="/the-loai" />?nhac-tru-tinh"><span class="zingchart__100more-body js__main-color js__border">Xem tất cả</span></a>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
             </div>
 
         </div>

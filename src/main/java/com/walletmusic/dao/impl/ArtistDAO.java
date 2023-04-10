@@ -3,7 +3,9 @@ package com.walletmusic.dao.impl;
 import com.walletmusic.dao.IArtistDAO;
 import com.walletmusic.mapper.ArtistMapper;
 import com.walletmusic.model.ArtistModel;
+import com.walletmusic.paging.PageRequest;
 import com.walletmusic.paging.Pageble;
+import com.walletmusic.sort.Sorter;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
@@ -37,6 +39,25 @@ public class ArtistDAO extends AbstractDAO<ArtistModel> implements IArtistDAO {
             artist.setTotalAlbum(getTotalAlbum(artist.getId()));
         }
         return artistModelList;
+    }
+
+    @Override
+    public List<ArtistModel> findAllByTotallisten() {
+        String sql = "SELECT ar.id,ar.name,ar.birth_day, ar.gender,ar.image,sum(count_listen) as total_listen FROM artists as ar " +
+                "inner join song_by as sb " +
+                "on ar.id = sb.artist_id " +
+                "inner join songs as s " +
+                "on s.id = sb.song_id " +
+                "group by ar.name order by ? ? limit ? ";
+        List<ArtistModel> artists = query(sql,new ArtistMapper(),"total_listen","desc",5);
+        return artists;
+    }
+
+    @Override
+    public List<ArtistModel> findAllBySearch(Pageble pageble) {
+        String sql = "SELECT * FROM artists WHERE name LIKE ?";
+        String keyword =  pageble.getSearchKeyWord() ;
+        return query(sql,new ArtistMapper(),keyword);
     }
 
     @Override

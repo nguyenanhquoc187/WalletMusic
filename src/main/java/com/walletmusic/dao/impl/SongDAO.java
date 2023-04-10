@@ -4,6 +4,7 @@ import com.walletmusic.dao.IAlbumDAO;
 import com.walletmusic.dao.IArtistDAO;
 import com.walletmusic.dao.IGenresDAO;
 import com.walletmusic.dao.ISongDAO;
+import com.walletmusic.mapper.PlaylistIncludesMapper;
 import com.walletmusic.mapper.RowMapper;
 import com.walletmusic.mapper.SongByGenresMapper;
 import com.walletmusic.mapper.SongMapper;
@@ -116,7 +117,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
     @Override
     public List<SongModel> findAllByTitle(Pageble pageble) {
         String sql = " SELECT *, image as song_img FROM songs WHERE title LIKE ?";
-        String keyWord =  "%" + pageble.getSearchKeyWord() + "%";
+        String keyWord =  pageble.getSearchKeyWord() ;
         if (pageble.getSorter() != null && StringUtils.isNotBlank(pageble.getSorter().getSortName()) && StringUtils.isNotBlank(pageble.getSorter().getSortBy())) {
             sql+=(" ORDER BY "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+"");
         }
@@ -143,7 +144,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
                 "inner join song_by as sb " +
                 "on s.id = sb.song_id " +
                 "where name like ?";
-        String keyWord =  "%" + pageble.getSearchKeyWord() + "%";
+        String keyWord =   pageble.getSearchKeyWord() ;
         if (pageble.getSorter() != null && StringUtils.isNotBlank(pageble.getSorter().getSortName()) && StringUtils.isNotBlank(pageble.getSorter().getSortBy())) {
             sql+=(" ORDER BY "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+"");
         }
@@ -173,7 +174,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
                 "inner join artists as ar " +
                 "on sb.artist_id = ar.id " +
                 "where ar.name LIKE ?" ;
-        String keyWord =  "%" + pageble.getSearchKeyWord() + "%";
+        String keyWord =   pageble.getSearchKeyWord() ;
         if (pageble.getSorter() != null && StringUtils.isNotBlank(pageble.getSorter().getSortName()) && StringUtils.isNotBlank(pageble.getSorter().getSortBy())) {
             sql+=(" ORDER BY "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+"");
         }
@@ -192,6 +193,25 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
         return songs;
     }
 
+    @Override
+    public List<SongModel> findAllInPlaylist(int playlistId) {
+        String sql = "SELECT * FROM playlist_includes WHERE playlist_id = ?";
+        List<SongModel> songs = query(sql,new PlaylistIncludesMapper(),playlistId);
+        for (int i = 0 ; i< songs.size(); i++) {
+            songs.set(i, findOneWithArtistAndAlbum(songs.get(i).getId()));
+        }
+        return songs;
+    }
+
+    @Override
+    public List<SongModel> findAllInAlbum(int albumId) {
+        String sql = "SELECT * FROM songs WHERE album_id = ?";
+        List<SongModel> songs = query(sql,new SongMapper(),albumId);
+        for (int i = 0 ; i < songs.size();i++) {
+            songs.set(i,findOneWithArtistAndAlbum(songs.get(i).getId()));
+        }
+        return songs;
+    }
 
 
     @Override
@@ -255,6 +275,12 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
     }
 
     @Override
+    public void updateCountlisten(int id) {
+        String sql = "UPDATE songs SET count_listen = count_listen + 1 WHERE id = ?";
+        update(sql,id);
+    }
+
+    @Override
     public void delete(int id) {
         String sql = "DELETE FROM songs WHERE id = ?";
         deleteGenreOf(id);
@@ -293,7 +319,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
 
     @Override
     public int getTotalItemSearchArtist(String searchKeyWord) {
-        String keyWord =  "%" + searchKeyWord + "%";
+        String keyWord =  searchKeyWord ;
         String sql = "SELECT distinct count(*) FROM songs as s " +
                 "inner join song_by as sb " +
                 "on s.id = sb.song_id " +
@@ -309,7 +335,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
 
     @Override
     public int getTotalItemSearchAlbum(String searchKeyWord) {
-        String keyWord =  "%" + searchKeyWord + "%";
+        String keyWord =  searchKeyWord ;
         String sql = "SELECT distinct count(*) FROM songs as s " +
                 "inner join albums as al " +
                 "on s.album_id = al.id " +
@@ -322,7 +348,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
     @Override
     public int getTotalItemSearchTitle(String searchKeyWord) {
         String sql = " SELECT count(*) FROM songs WHERE title LIKE ?";
-        String keyWord =  "%" + searchKeyWord + "%";
+        String keyWord =  searchKeyWord ;
         return count(sql,keyWord);
     }
 }

@@ -43,6 +43,11 @@ public class PageRequest implements Pageble {
 	}
 
 	@Override
+	public void setSearchKeyWord(String keyWord) {
+		this.search = keyWord;
+	}
+
+	@Override
 	public String getSearchField() {
 		return searchField;
 	}

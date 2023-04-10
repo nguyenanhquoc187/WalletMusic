@@ -39,7 +39,7 @@
     <div class="main-container">
       <div class="main-container-pertional js__container-panes active">
         <div style="background-color: #402E79;" class="profile-artist">
-          <h1 style="font-size: 100px;" class="profile-item artist-name">Nhạc trẻ</h1>
+          <h1 style="font-size: 100px;" class="profile-item artist-name">${genresModel.name}</h1>
 
         </div>
 
@@ -53,43 +53,54 @@
             <ul style="overflow-y: auto; max-height: 400px;" class="option-music-list songs-list">
 
               <!-- songs-item-playing--active-onplay songs-item--active songs-item-playbtn--active -->
-              <c:forEach begin="0" end="9" var="i">
-                <li class="songs-item js__song-item0" data-index="${index}">
-                  <div class="songs-item-left">
-                    <div style="background-image: url(<c:url value ="/template/web/assets/img/songs/${i}.webp" />);"
-                         class="songs-item-left-img js__songs-item-left-img-0">
-                      <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
-                      <div class="songs-item-left-img-playing-box">
-                        <img class="songs-item-left-img-playing"
-                             src="<c:url value ="/template/web/assets/img/songs/icon-playing.gif" />" alt="playing">
+              <c:forEach var="item" items="${songModel.listResult}" varStatus="loop">
+                <c:if test="${loop.index <= 10}">
+                  <li class="songs-item js__song-item0" data-index="${index}" >
+                    <div class="songs-item-left">
+                      <div style="background-image: url(<c:url value ="${item.image}" />);"
+                           class="songs-item-left-img js__songs-item-left-img-0">
+                        <div class="songs-item-left-img-playbtn"><i class="fas fa-play"></i></div>
+                        <div class="songs-item-left-img-playing-box">
+                          <img class="songs-item-left-img-playing"
+                               src="<c:url value ="/template/web/assets/img/songs/icon-playing.gif" />" alt="playing">
+                        </div>
+                      </div>
+
+                      <div class="songs-item-left-body">
+                        <a href="<c:url value ="/bai-hat?id=${item.id}" />">
+                          <h3 class="songs-item-left-body-name js__main-color">${item.title}</h3>
+                        </a>
+
+                        <div style="display: flex;"  class="" id="artist-link">
+                          <c:forEach var="artist" items="${item.artistList}">
+                            <a style="margin-right: 5px;"  href="<c:url value ="/nghe-si?id=${artist.id}" />">
+                              <span class="songs-item-left-body-singer">${artist.name}</span>
+                            </a>
+                          </c:forEach>
+
+                        </div>
                       </div>
                     </div>
+                    <div class="songs-item-center    ">
+                      <c:if test="${empty item.album}">
+                        <a href="<c:url value ="/bai-hat?id=${item.id}" />"><span>${item.title} (Single)</span></a>
+                      </c:if>
 
-                    <div class="songs-item-left-body">
-                      <a href="<c:url value ="/bai-hat" />">
-                        <h3 class="songs-item-left-body-name js__main-color">Anh Đã Lạc Vào</h3>
-                      </a>
-                      <a  href="<c:url value ="/nghe-si" />">
-                                                <span class="songs-item-left-body-singer">Green, Đại Mèo
-                                                    Remix</span>
-                      </a>
+                      <c:if test="${not empty item.album}">
+                        <a href="<c:url value ="/album?id=${item.album.id}" />"><span>${item.album.name}</span></a>
+                      </c:if>
                     </div>
-                  </div>
-                  <div class="songs-item-center    ">
-                    <a href="<c:url value ="/album" />"><span>Anh Đã Lạc Vào (Remix)</span></a>
-                  </div>
-                  <div class="songs-item-right  ">
+                    <div class="songs-item-right  ">
 
-                                        <span class="songs-item-right-tym">
-                                            <i class="fas fa-heart songs-item-right-tym-first"></i>
-                                            <i class="far fa-heart songs-item-right-tym-last"></i>
-                                        </span>
-                    <span class="songs-item-right-duration ">04:27</span>
-                    <span class="songs-item-right-more js__main-color"><i
-                            class="fas fa-ellipsis-h"></i></span>
-                  </div>
-                  <audio src="<c:url value="/template/web/assets/music/list-song/${i}.mp3" />" class="audio"></audio>
-                </li>
+                      <span class="songs-item-right-duration ">${item.timePlay}</span>
+                      <span class="songs-item-right-more js__main-color"><i
+                              class="fas fa-ellipsis-h"></i>
+                          <input hidden value="${item.id}">
+                      </span>
+                    </div>
+                    <audio src="<c:url value="${item.mediaUrl}" />" class="audio"></audio>
+                  </li>
+                </c:if>
               </c:forEach>
 
             </ul>
@@ -102,23 +113,27 @@
             </div>
             <ul class="option-all__playlist-list">
               <div class="row">
-                <c:forEach begin="0" end="4">
-                  <div class="col l-2-4 m-4 s-6 mobile-margin-bot-30px">
-                    <li class="option-all__playlist-item option-all__playlist-item-margin_top">
-                      <div class="option-all__playlist-item-img-wrapper option-all__playlist-item-img-wrapper-mv">
-                        <div class="option-all__playlist-item-img-wrapper-action">
-                          <!-- <i class="fas fa-times option-all__playlist-item-img-wrapper-action-icon1"></i> -->
-                          <i class="fas fa-play option-all__playlist-item-img-wrapper-action-icon2"></i>
-                          <!-- <i class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i> -->
-                        </div>
-                        <div class="option-all__playlist-item-img option-all__playlist-item-img-singer" style="background-image: url(<c:url value ="/template/web/assets/img/singer/1.webp" />);"></div>
-                      </div>
-                      <div class="option-all__playlist-item-content-singer">
-                        <div class="option-all__playlist-item-content-singer-name1 js__main-color">Mr.Siro</div>
+                <c:forEach  var="item" items="${artistModel.listResult}" varStatus="loop">
+                  <c:if test="${loop.index < 5}">
+                    <div class="col l-2-4 m-4 s-6 mobile-margin-bot-30px">
+                      <a style="color: var(--white-color);" href="<c:url value ="/nghe-si?id=${item.id}" />">
+                        <li class="option-all__playlist-item option-all__playlist-item-margin_top">
+                          <div class="option-all__playlist-item-img-wrapper option-all__playlist-item-img-wrapper-mv">
+                            <div class="option-all__playlist-item-img-wrapper-action">
+                              <!-- <i class="fas fa-times option-all__playlist-item-img-wrapper-action-icon1"></i> -->
+                              <i class="fas fa-play option-all__playlist-item-img-wrapper-action-icon2"></i>
+                              <!-- <i class="fas fa-ellipsis-h option-all__playlist-item-img-wrapper-action-icon3"></i> -->
+                            </div>
+                            <div class="option-all__playlist-item-img option-all__playlist-item-img-singer" style="background-image: url(<c:url value ="${item.image}" />);"></div>
+                          </div>
+                          <div class="option-all__playlist-item-content-singer">
+                            <div class="option-all__playlist-item-content-singer-name1 js__main-color">${item.name}</div>
 
-                      </div>
-                    </li>
-                  </div>
+                          </div>
+                        </li>
+                      </a>
+                    </div>
+                  </c:if>
                 </c:forEach>
 
 

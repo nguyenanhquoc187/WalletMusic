@@ -51,6 +51,37 @@ public class AlbumDAO extends AbstractDAO<AlbumModel> implements IAlbumDAO {
         return albumModelList;
     }
 
+    @Override
+    public List<AlbumModel> findAllByCountListen(String search) {
+        String sql = "SELECT al.*, sum(count_listen) as count_listen FROM albums as al " +
+                "left join songs as s " +
+                "on al.id =s.album_id " +
+                "where al.name like ? " +
+                "group by al.id " +
+                "order by count_listen desc " +
+                "limit 5";
+        String keyword = "%" + search +"%";
+        List<AlbumModel> albums = query(sql,new AlbumMapper(), keyword);
+        return albums;
+    }
+
+    @Override
+    public List<AlbumModel> findAllByArtist(int artistId) {
+        String sql = "select * from albums as al " +
+                "inner join album_by as ab " +
+                "on al.id = ab.album_id " +
+                "where ab.artist_id = ? " +
+                "group by al.id";
+        List<AlbumModel> albums = query(sql,new AlbumMapper(),artistId);
+        return albums;
+    }
+
+    @Override
+    public List<AlbumModel> findAllBySearch(Pageble pageble) {
+        String sql = "SELECT * FROM albums WHERE name LIKE ?";
+        String keyword =  pageble.getSearchKeyWord() ;
+        return query(sql,new AlbumMapper(),keyword);
+    }
 
 
     @Override

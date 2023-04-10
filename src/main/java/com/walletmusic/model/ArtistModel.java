@@ -9,6 +9,15 @@ public class ArtistModel extends AbstractModel<ArtistModel>{
     private String image;
     private int totalSong;
     private int totalAlbum;
+    private Integer totalListen;
+
+    public Integer getTotalListen() {
+        return totalListen;
+    }
+
+    public void setTotalListen(Integer totalListen) {
+        this.totalListen = totalListen;
+    }
 
     public int getTotalSong() {
         return totalSong;

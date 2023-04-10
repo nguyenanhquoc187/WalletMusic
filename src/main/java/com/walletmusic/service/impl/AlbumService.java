@@ -33,6 +33,28 @@ public class AlbumService implements IAlbumService {
     }
 
     @Override
+    public List<AlbumModel> findAllByCountListen() {
+        return albumDao.findAllByCountListen("");
+    }
+
+    @Override
+    public List<AlbumModel> findAllByArtist(int artistId) {
+        return albumDao.findAllByArtist(artistId);
+    }
+
+    @Override
+    public List<AlbumModel> findAllBySearch(Pageble pageble) {
+        pageble.setSearchKeyWord("%"+pageble.getSearchKeyWord() + "%");
+        return albumDao.findAllBySearch(pageble);
+    }
+
+    @Override
+    public List<AlbumModel> findAllBySearchStart(Pageble pageble) {
+        pageble.setSearchKeyWord(pageble.getSearchKeyWord() + "%");
+        return albumDao.findAllBySearch(pageble);
+    }
+
+    @Override
     public int getTotalSong(int id) {
         return albumDao.getTotalSong(id);
     }

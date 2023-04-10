@@ -1,7 +1,6 @@
 package com.walletmusic.service;
 
 import com.walletmusic.model.AlbumModel;
-import com.walletmusic.model.ArtistModel;
 import com.walletmusic.paging.Pageble;
 
 import java.util.List;
@@ -11,6 +10,10 @@ public interface IAlbumService {
     AlbumModel findOneWithArtistId(int id);
     List<AlbumModel> findAll();
     List<AlbumModel> findAll(Pageble pageble);
+    List<AlbumModel> findAllByCountListen();
+    List<AlbumModel> findAllByArtist(int artistId);
+    List<AlbumModel> findAllBySearch(Pageble pageble);
+    List<AlbumModel> findAllBySearchStart(Pageble pageble);
     int getTotalSong(int id);
     int save(AlbumModel album);
     void update(AlbumModel newAlbum);

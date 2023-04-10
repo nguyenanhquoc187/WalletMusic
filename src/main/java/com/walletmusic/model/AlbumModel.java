@@ -13,6 +13,15 @@ public class AlbumModel extends AbstractModel<AlbumModel> {
     private List<Integer> songIdList = new ArrayList<>();
     private List<SongModel> songList = new ArrayList<>();
     private List<Integer> artistIdList = new ArrayList<>();
+    private List<ArtistModel> artistList = new ArrayList<>();
+
+    public List<ArtistModel> getArtistList() {
+        return artistList;
+    }
+
+    public void setArtistList(List<ArtistModel> artistList) {
+        this.artistList = artistList;
+    }
 
     public List<Integer> getSongIdList() {
         return songIdList;

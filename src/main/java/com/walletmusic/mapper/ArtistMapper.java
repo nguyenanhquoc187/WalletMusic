@@ -16,6 +16,11 @@ public class ArtistMapper implements RowMapper<ArtistModel> {
             artist.setBirthDay(resultSet.getDate("birth_day"));
             artist.setGender(resultSet.getString("gender"));
             artist.setImage(resultSet.getString("image"));
+            try {
+                artist.setTotalListen(resultSet.getInt("total_listen"));
+            } catch (SQLException e) {
+                e.getMessage();
+            }
             return artist;
         } catch (SQLException e) {
             return null;

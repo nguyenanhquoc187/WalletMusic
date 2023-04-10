@@ -43,7 +43,7 @@ public class SongController extends HttpServlet {
             } else {
                 if (model.getSearchField() == null) model.setSearchField("title");
                 Pageble pageble = new PageRequest(model.getPage(),model.getMaxPageItem(),
-                        new Sorter(model.getSortName(), model.getSortBy()), model.getSearch(), model.getSearchField() );
+                        new Sorter(model.getSortName(), model.getSortBy()), model.getSearch() , model.getSearchField() );
                 if (pageble.getSearchField().equals("artist") ) {
                     model.setListResult(songService.findAllByArtistName(pageble));
                     model.setTotalItem(songService.getTotalItemSearchArtist(model.getSearch()));

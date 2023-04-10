@@ -41,23 +41,23 @@
 
                     <ul class="genres-list">
                         <li class="genres-item">
-                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>
+                            <a href="<c:url value ="/the-loai?id=1" />">Nhạc trẻ</a>
                         </li>
                         <li class="genres-item">
-                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>
+                            <a href="<c:url value ="/the-loai?id=2" />">Nhạc trữ tình</a>
                         </li>
                         <li class="genres-item">
-                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>
+                            <a href="<c:url value ="/the-loai?id=4" />">Nhạc thiếu nhi</a>
                         </li>
                         <li class="genres-item">
-                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>
+                            <a href="<c:url value ="/the-loai?id=5" />">Nhạc quê hương</a>
                         </li>
-                        <li class="genres-item">
-                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>
-                        </li>
-                        <li class="genres-item">
-                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>
-                        </li>
+<%--                        <li class="genres-item">--%>
+<%--                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>--%>
+<%--                        </li>--%>
+<%--                        <li class="genres-item">--%>
+<%--                            <a href="<c:url value ="/the-loai" />">Nhạc trẻ</a>--%>
+<%--                        </li>--%>
                     </ul>
 
                 </div>
