@@ -1,13 +1,11 @@
 package com.walletmusic.controller.web;
 
 import com.walletmusic.dao.IGenresDAO;
-import com.walletmusic.model.ArtistModel;
-import com.walletmusic.model.GenresModel;
-import com.walletmusic.model.HistoryModel;
-import com.walletmusic.model.SongModel;
+import com.walletmusic.model.*;
 import com.walletmusic.service.IArtistService;
 import com.walletmusic.service.IGenresService;
 import com.walletmusic.service.ISongService;
+import com.walletmusic.utils.SessionUtil;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -29,6 +27,14 @@ public class GenresController extends HttpServlet {
     private IArtistService artistService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserModel user = (UserModel) SessionUtil.getInstance().getValue(request,"USERMODEL");
+        SongModel songSuggest = new SongModel();
+        if (user != null) {;
+            songSuggest.setListResult(songService.findSongSuggest(user.getId()));
+        } else {
+            songSuggest.setListResult(songService.findSuggest());
+        }
+        SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
         SongModel songModel = new SongModel();
         ArtistModel artistModel = new ArtistModel();
         GenresModel genresModel ;

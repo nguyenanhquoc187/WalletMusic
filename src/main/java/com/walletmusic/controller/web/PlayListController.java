@@ -23,8 +23,15 @@ public class PlayListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = (UserModel) SessionUtil.getInstance().getValue(request,"USERMODEL");
-        if (user == null) response.sendRedirect( request.getContextPath() + "/dang-nhap?action=login&message=not_login&alert=error");
+        SongModel songSuggest = new SongModel();
+        if (user == null) {
+            response.sendRedirect( request.getContextPath() + "/dang-nhap?action=login&message=not_login&alert=error");
+            songSuggest.setListResult(songService.findSuggest());
+        }
         else {
+            songSuggest.setListResult(songService.findSongSuggest(user.getId()));
+
+
 
             String action = request.getParameter("action");
             String alert = request.getParameter("alert");
@@ -58,6 +65,8 @@ public class PlayListController extends HttpServlet {
                 request.getRequestDispatcher("/views/web/playlist.jsp").forward(request,response);
             }
         }
+
+        SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
 
 
     }

@@ -79,6 +79,12 @@ public class AlbumDAO extends AbstractDAO<AlbumModel> implements IAlbumDAO {
     @Override
     public List<AlbumModel> findAllBySearch(Pageble pageble) {
         String sql = "SELECT * FROM albums WHERE name LIKE ?";
+        if (pageble.getSorter() != null && StringUtils.isNotBlank(pageble.getSorter().getSortName()) && StringUtils.isNotBlank(pageble.getSorter().getSortBy())) {
+            sql+=" ORDER BY "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+"";
+        }
+        if (pageble.getOffset() != null && pageble.getLimit() != null) {
+            sql+= " LIMIT "+pageble.getOffset()+", "+pageble.getLimit()+"";
+        }
         String keyword =  pageble.getSearchKeyWord() ;
         return query(sql,new AlbumMapper(),keyword);
     }
@@ -125,5 +131,11 @@ public class AlbumDAO extends AbstractDAO<AlbumModel> implements IAlbumDAO {
     public int getTotalItem() {
         String sql = "SELECT count(*) FROM albums";
         return count(sql);
+    }
+
+    @Override
+    public int getTotalItemBySearch(String keyword) {
+        String sql = "SELECT count(*) FROM albums WHERE name LIKE ?";
+        return count(sql,keyword);
     }
 }

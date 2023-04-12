@@ -2,8 +2,10 @@ package com.walletmusic.controller.web;
 
 import com.walletmusic.model.ArtistModel;
 import com.walletmusic.model.HistoryModel;
+import com.walletmusic.model.SongModel;
 import com.walletmusic.model.UserModel;
 import com.walletmusic.service.IHistoryService;
+import com.walletmusic.service.ISongService;
 import com.walletmusic.utils.SessionUtil;
 
 import javax.inject.Inject;
@@ -17,8 +19,11 @@ import java.util.*;
 public class PersonalController extends HttpServlet {
     @Inject
     private IHistoryService historyService;
+    @Inject
+    private ISongService songService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         UserModel user = (UserModel) SessionUtil.getInstance().getValue(request,"USERMODEL");
         if (user == null) response.sendRedirect( request.getContextPath() + "/dang-nhap?action=login&message=not_login&alert=error");
         else {
@@ -34,6 +39,14 @@ public class PersonalController extends HttpServlet {
                     }
                 }
             }
+
+            SongModel songSuggest = new SongModel();
+            if (user != null) {;
+                songSuggest.setListResult(songService.findSongSuggest(user.getId()));
+            } else {
+                songSuggest.setListResult(songService.findSuggest());
+            }
+            SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
 
             ArtistModel artistModel = new ArtistModel();
             artistModel.setListResult(artistModelList);

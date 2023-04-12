@@ -15,6 +15,7 @@ public interface ISongService {
     List<SongModel> findAllByTitle(Pageble pageble);
     List<SongModel> findAllByAlbumName(Pageble pageble);
     List<SongModel> findAllWithArtistAndAlbum(Pageble pageble);
+    List<SongModel> findSongSuggest(int userId);
     public int save(SongModel song);
     public void delete(Integer[] ids);
     public void update(SongModel updateSong);

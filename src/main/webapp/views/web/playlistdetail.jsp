@@ -130,7 +130,7 @@
                             <h1 style="color: var(--white-color)">Bài hát gợi ý</h1>
                             <ul class="option-all__songs-list songs-list" style="height: 500px;">
                                 <!-- songs-item--active -->
-                                <c:forEach var="item" items="${songModel.listResult}">
+                                <c:forEach var="item" items="${songSuggest.listResult}">
                                     <li class="songs-item js__song-item0" data-index="${index}">
                                         <div class="songs-item-left">
                                             <div style="background-image: url(<c:url value ="${item.image}" />);"
@@ -177,6 +177,7 @@
                                         <audio src="<c:url value="${item.mediaUrl}" />" class="audio"></audio>
                                     </li>
                                 </c:forEach>
+
 
                             </ul>
                         </div>

@@ -17,4 +17,5 @@ public interface IArtistDAO extends GenericDAO<ArtistModel> {
     void update(ArtistModel newArtist);
     void delete(int id);
     int getTotalItem();
+    int getTotalBySearch(String keyword);
 }

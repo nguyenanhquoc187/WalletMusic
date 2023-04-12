@@ -31,12 +31,20 @@ public class AlbumController extends HttpServlet {
         AlbumModel model = FormUtil.toModel(AlbumModel.class, request);
         String view = "";
         if (model.getType().equals(SystemConstant.LIST)) {
-            Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
-                    new Sorter(model.getSortName(), model.getSortBy()));
-            model.setListResult(albumService.findAll(pageble));
-            model.setTotalItem(albumService.getTotalItem());
-            model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
-            request.setAttribute("albumListAll", songService.findAllAlbumId());
+            if (model.getSearch() == null || model.getSearch().equals("")) {
+                Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
+                        new Sorter(model.getSortName(), model.getSortBy()));
+                model.setListResult(albumService.findAll(pageble));
+                model.setTotalItem(albumService.getTotalItem());
+                model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+                request.setAttribute("albumListAll", songService.findAllAlbumId());
+            } else {
+                Pageble pageble = new PageRequest(model.getPage(),model.getMaxPageItem(),
+                        new Sorter(model.getSortName(), model.getSortBy()), model.getSearch() , model.getSearchField() );
+                model.setListResult(albumService.findAllBySearch(pageble));
+                model.setTotalItem(albumService.getTotalItemBySearch(model.getSearch()));
+                model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+            }
             view = "/views/admin/albums/list.jsp";
         }
         else if (model.getType().equals(SystemConstant.EDIT)) {

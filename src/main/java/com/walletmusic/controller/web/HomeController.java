@@ -34,8 +34,16 @@ public class HomeController extends HttpServlet {
             PlaylistModel playlistModel = new PlaylistModel();
             playlistModel.setListResult(playlistService.findAllPlaylistByUser(
                     ((UserModel) SessionUtil.getInstance().getValue(request,"USERMODEL")).getId() ));
+            SongModel songSuggest = new SongModel();
+            songSuggest.setListResult(songService.findSongSuggest(user.getId()));
+            SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
             request.setAttribute("playlistModel",playlistModel);
+        } else {
+            SongModel songSuggest = new SongModel();
+            songSuggest.setListResult(songService.findSuggest());
+            SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
         }
+
         AlbumModel albumModel = new AlbumModel();
         albumModel.setListResult(albumService.findAllByCountListen());
         ArtistModel artistModel = new ArtistModel();

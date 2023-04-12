@@ -11,6 +11,17 @@ public class SongModel extends AbstractModel<SongModel>{
     private Long countListen;
     private String timePlay;
     private int albumId;
+
+    List<Integer> recommendId = new ArrayList<>();
+
+    public List<Integer> getRecommendId() {
+        return recommendId;
+    }
+
+    public void setRecommendId(List<Integer> recommendId) {
+        this.recommendId = recommendId;
+    }
+
     private ArrayList<Integer> genresIdList = new ArrayList<>();
     private ArrayList<Integer> artistIdList = new ArrayList<>();
     private AlbumModel album = new AlbumModel();

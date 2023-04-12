@@ -17,7 +17,6 @@ public class PlaylistMapper implements RowMapper<PlaylistModel> {
             playlist.setUserId(resultSet.getInt("user_id"));
             return playlist;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }

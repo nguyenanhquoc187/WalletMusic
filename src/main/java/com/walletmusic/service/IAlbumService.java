@@ -19,4 +19,5 @@ public interface IAlbumService {
     void update(AlbumModel newAlbum);
     void delete(Integer[] ids);
     int getTotalItem();
+    public int getTotalItemBySearch(String keyword);
 }

@@ -6,6 +6,7 @@
 <head>
   <title>Chỉnh sửa thông tin album</title>
 </head>
+
 <body>
     <div class="main-content">
       <div class="main-content-inner">
@@ -70,14 +71,18 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label no-padding-right">Image</label>
                   <div class="col-sm-9">
-                    <input required type="file" accept="image/*" class="form-control" id="image" name="image" value=""/>
+                    <c:if test="${not empty model}">
+                      <img style="width: 100px; border-radius: 50%; object-fit: cover;" src="<c:url value="${model.image}"/> " alt="">
+                    </c:if>
+                    <input style="margin-bottom: 20px" required type="file" accept="image/*" class="form-control" id="image" name="image" value=""/>
                   </div>
                 </div>
+                <br/> <br/>
                 <br/>
-                <br/>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label no-padding-right">Ngày ra mắt</label>
-                  <div class="col-sm-9">
+
+                <div  class="form-group">
+                  <label class="col-sm-3 control-label no-padding-right" for="releaseDate">Ngày ra mắt</label>
+                  <div  class="col-sm-9">
                     <input required type="date" class="form-control" id="releaseDate" name="releaseDate" value="${model.releaseDate}"/>
                   </div>
                 </div>
@@ -86,7 +91,7 @@
 
 
                 <div class="form-group">
-                  <div class="col-sm-12">
+                  <div style="margin-top: 20px" class="col-sm-12">
                     <c:if test="${not empty model.id}">
                       <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thông tin album" id="btnAddOrUpdateNew"/>
                     </c:if>
@@ -167,6 +172,12 @@
         }
       });
     }
+
+      const image = document.querySelector("img")
+      const input = document.querySelector("input[type=file]")
+      input.addEventListener("change", ()=> {
+      image.src = URL.createObjectURL(input.files[0])
+      });
 
 </script>
 </body>

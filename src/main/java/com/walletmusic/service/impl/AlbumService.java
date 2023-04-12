@@ -80,4 +80,10 @@ public class AlbumService implements IAlbumService {
     public int getTotalItem() {
         return albumDao.getTotalItem();
     }
+
+    @Override
+    public int getTotalItemBySearch(String keyword) {
+        keyword = "%" + keyword + "%";
+        return albumDao.getTotalItemBySearch(keyword);
+    }
 }

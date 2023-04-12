@@ -10,25 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1218bfb-bcde-4513-895f-a5489902b4f0" name="Changes" comment="upload">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/PlaylistIncAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/SearchAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IHistoryDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/HistoryDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/filter/PlaylistFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/filter/SuggestFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/mapper/HistoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/mapper/PlaylistIncludesMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IHistoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/HistoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/SongController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/UserAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/UserAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/AlbumController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/ArtistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/ArtistController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/AlbumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/ArtistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/ArtistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/BatTapTrenLop.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/GenresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/GenresController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/PersonalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/PersonalController.java" afterDir="false" />
@@ -38,44 +25,25 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/SongController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IAlbumDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IAlbumDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IArtistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IArtistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/IPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/ISongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/AbstractDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/AlbumDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/AlbumDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/ArtistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/ArtistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/PlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/PlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/SongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/mapper/ArtistMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/mapper/ArtistMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/AlbumModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/AlbumModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/ArtistModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/ArtistModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/HistoryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/HistoryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/paging/PageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/paging/PageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/paging/Pageble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/paging/Pageble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/filter/SuggestFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/mapper/PlaylistMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/mapper/PlaylistMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/SongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/model/SongModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IAlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IAlbumService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IArtistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IArtistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IGenresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IGenresService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IPlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/IPlaylistService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/ISongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/ISongService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/AlbumService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/ArtistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/ArtistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/GenresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/GenresService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/PlaylistService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/SongService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/web/addSong2Playlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/web/addSong2Playlist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/web/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/web/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/web/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/web/sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/decorators/web.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/decorators/web.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/web/assets/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/web/assets/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/web/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/web/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/web/assets/javascript/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/web/assets/javascript/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/albums/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/albums/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/albums/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/albums/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/artists/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/artists/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/artists/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/artists/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/songs/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/songs/edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/albumdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/albumdetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/artist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/artist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/genres.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/genres.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/personal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/personal.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/playlistdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/playlistdetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/searchResults.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/songdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/songdetail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/songrank.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/songrank.jsp" afterDir="false" />
     </list>
@@ -163,6 +131,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -210,6 +181,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 8.5.34" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.34" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="WalletMusic:war exploded">
           <settings>
@@ -392,6 +364,11 @@
       <workItem from="1680946029768" duration="24426000" />
       <workItem from="1681008257840" duration="42361000" />
       <workItem from="1681100615379" duration="7160000" />
+      <workItem from="1681125075263" duration="14502000" />
+      <workItem from="1681182882091" duration="2923000" />
+      <workItem from="1681223146558" duration="848000" />
+      <workItem from="1681224997337" duration="9407000" />
+      <workItem from="1681310368730" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="upload">
       <created>1680969895054</created>
@@ -407,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680970541703</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="upload">
+      <created>1681125389863</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681125389863</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,6 +428,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.Integer" memberName="value" />
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
         <PinnedItemInfo parentTag="com.walletmusic.model.SongModel" memberName="album" />
         <PinnedItemInfo parentTag="com.walletmusic.model.SongModel" memberName="listResult" />
       </pinned-members>

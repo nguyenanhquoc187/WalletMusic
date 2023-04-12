@@ -18,4 +18,5 @@ public interface IArtistService {
     void update(ArtistModel newArtist);
     void delete(Integer[] ids);
     int getTotalItem();
+    int getTotalItemBySearch(String keyword);
 }

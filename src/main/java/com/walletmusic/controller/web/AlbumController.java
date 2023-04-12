@@ -2,8 +2,10 @@ package com.walletmusic.controller.web;
 
 import com.walletmusic.model.AlbumModel;
 import com.walletmusic.model.SongModel;
+import com.walletmusic.model.UserModel;
 import com.walletmusic.service.IAlbumService;
 import com.walletmusic.service.ISongService;
+import com.walletmusic.utils.SessionUtil;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -19,6 +21,14 @@ public class AlbumController extends HttpServlet {
     private IAlbumService albumService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserModel user = (UserModel) SessionUtil.getInstance().getValue(request,"USERMODEL");
+        SongModel songSuggest = new SongModel();
+        if (user != null) {;
+            songSuggest.setListResult(songService.findSongSuggest(user.getId()));
+        } else {
+            songSuggest.setListResult(songService.findSuggest());
+        }
+        SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
         int albumId = Integer.parseInt(request.getParameter("id"));
         AlbumModel albumModel = albumService.findOne(albumId);
         SongModel songModel = new SongModel();

@@ -26,9 +26,9 @@
       <div class="page-content">
         <div class="row">
           <div class="col-xs-12">
-            <input type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="">
+            <input type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="${model.search}">
 
-            <button class="btn btn-outline-secondary" type="button">Tìm kiếm</button>
+            <button id="btnSearch" class="btn btn-outline-secondary" type="button">Tìm kiếm</button>
             <div id="alertAlbumId"></div>
 
 
@@ -129,6 +129,29 @@
         }
       }
     });
+  });
+  const searchInput = document.getElementById("search");
+
+  searchInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const form = document.getElementById("formSubmit");
+      form.submit();
+    }
+  });
+
+
+
+
+  $('#btnSearch').click(function (event) {
+    event.preventDefault();
+    $('#maxPageItem').val(limit);
+    $('#page').val(1);
+    $('#sortName').val('name');
+    $('#sortBy').val('asc');
+    $('#type').val('list');
+    $('#formSubmit').submit();
+
   });
 
   $("#btnDelete").click(function() {

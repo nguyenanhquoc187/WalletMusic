@@ -22,4 +22,5 @@ public interface IAlbumDAO extends GenericDAO<AlbumModel> {
     void delete(int id);
     void deleteAlbumBy(int id);
     int getTotalItem();
+    int getTotalItemBySearch(String keyword);
 }

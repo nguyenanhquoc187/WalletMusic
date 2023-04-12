@@ -2,7 +2,6 @@ package com.walletmusic.controller.admin;
 
 import com.walletmusic.constant.SystemConstant;
 import com.walletmusic.model.ArtistModel;
-import com.walletmusic.model.SongModel;
 import com.walletmusic.paging.PageRequest;
 import com.walletmusic.paging.Pageble;
 import com.walletmusic.service.IArtistService;
@@ -25,11 +24,20 @@ public class ArtistController extends HttpServlet {
         ArtistModel model = FormUtil.toModel(ArtistModel.class, request);
         String view = "";
         if (model.getType().equals(SystemConstant.LIST)) {
-            Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
-                    new Sorter(model.getSortName(), model.getSortBy()));
-            model.setListResult(artistService.findAll(pageble));
-            model.setTotalItem(artistService.getTotalItem());
-            model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+            if (model.getSearch() == null || model.getSearch().equals("")) {
+                Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
+                        new Sorter(model.getSortName(), model.getSortBy()));
+                model.setListResult(artistService.findAll(pageble));
+                model.setTotalItem(artistService.getTotalItem());
+                model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+            } else {
+                Pageble pageble = new PageRequest(model.getPage(),model.getMaxPageItem(),
+                        new Sorter(model.getSortName(), model.getSortBy()), model.getSearch() , model.getSearchField() );
+                model.setListResult(artistService.findAllBySearch(pageble));
+                model.setTotalItem(artistService.getTotalItemBySearch(model.getSearch()));
+                model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+            }
+
             view = "/views/admin/artists/list.jsp";
         }
         else if (model.getType().equals(SystemConstant.EDIT)) {

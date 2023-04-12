@@ -56,6 +56,12 @@ public class ArtistDAO extends AbstractDAO<ArtistModel> implements IArtistDAO {
     @Override
     public List<ArtistModel> findAllBySearch(Pageble pageble) {
         String sql = "SELECT * FROM artists WHERE name LIKE ?";
+        if (pageble.getSorter() != null && StringUtils.isNotBlank(pageble.getSorter().getSortName()) && StringUtils.isNotBlank(pageble.getSorter().getSortBy())) {
+            sql+=" ORDER BY "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+"";
+        }
+        if (pageble.getOffset() != null && pageble.getLimit() != null) {
+            sql+= " LIMIT "+pageble.getOffset()+", "+pageble.getLimit()+"";
+        }
         String keyword =  pageble.getSearchKeyWord() ;
         return query(sql,new ArtistMapper(),keyword);
     }
@@ -95,5 +101,12 @@ public class ArtistDAO extends AbstractDAO<ArtistModel> implements IArtistDAO {
     public int getTotalItem() {
         String sql = "SELECT count(*) FROM artists";
         return count(sql);
+    }
+
+    @Override
+    public int getTotalBySearch(String keyword) {
+        String sql = "SELECT count(*) FROM artists WHERE name LIKE ?";
+
+        return count(sql,keyword);
     }
 }

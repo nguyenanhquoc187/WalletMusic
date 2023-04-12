@@ -144,10 +144,6 @@
                                     </div>
                                     <div class="songs-item-right  ">
 
-                                    <span class="songs-item-right-tym">
-                                        <i class="fas fa-heart songs-item-right-tym-first"></i>
-                                        <i class="far fa-heart songs-item-right-tym-last"></i>
-                                    </span>
                                         <span class="songs-item-right-duration ">${item.timePlay}</span>
                                         <span class="songs-item-right-more js__main-color"><i
                                                 class="fas fa-ellipsis-h"></i>

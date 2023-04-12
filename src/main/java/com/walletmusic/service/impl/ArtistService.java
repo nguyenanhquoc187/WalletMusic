@@ -69,4 +69,10 @@ public class ArtistService implements IArtistService {
     public int getTotalItem() {
         return artistDao.getTotalItem();
     }
+
+    @Override
+    public int getTotalItemBySearch(String keyword) {
+        keyword = "%" + keyword + "%";
+        return artistDao.getTotalBySearch(keyword);
+    }
 }
