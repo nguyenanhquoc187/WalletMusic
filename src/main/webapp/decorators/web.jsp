@@ -16,7 +16,8 @@
 
   <link rel="icon" href="<c:url value="/template/web/assets/img/icon-home/wallet.png"/>" type="image/gif" sizes="16x16">
   <!-- reset css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/normalize.min.css"/>">
+<%--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">--%>
   <!-- css grid để kết hợp chia khung và responsive -->
   <link rel="stylesheet" href="<c:url value="/template/web/assets/css/grid.css"/>">
   <!-- css mấy cái chung ban đầu -->
@@ -32,7 +33,8 @@
 <%--  <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>--%>
 
   <!-- dùng google font roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/font-roboto.css"/>">
+<%--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">--%>
   <!-- icon fontawesome -->
   <link rel="stylesheet" href="<c:url value="/template/web/assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css"/>">
 </head>

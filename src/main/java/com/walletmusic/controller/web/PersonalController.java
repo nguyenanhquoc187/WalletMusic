@@ -44,7 +44,7 @@ public class PersonalController extends HttpServlet {
             if (user != null) {;
                 songSuggest.setListResult(songService.findSongSuggest(user.getId()));
             } else {
-                songSuggest.setListResult(songService.findSuggest());
+                songSuggest.setListResult(songService.findSongRankSuggest());
             }
             SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
 

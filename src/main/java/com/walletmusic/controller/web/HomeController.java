@@ -2,7 +2,6 @@ package com.walletmusic.controller.web;
 
 import com.walletmusic.model.*;
 import com.walletmusic.service.*;
-import com.walletmusic.service.impl.SongService;
 import com.walletmusic.utils.FormUtil;
 import com.walletmusic.utils.MessageUtil;
 import com.walletmusic.utils.SessionUtil;
@@ -12,7 +11,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = {"/trang-chu", "/dang-nhap", "/dang-ky", "/thoat"})
 public class HomeController extends HttpServlet {
@@ -40,7 +38,7 @@ public class HomeController extends HttpServlet {
             request.setAttribute("playlistModel",playlistModel);
         } else {
             SongModel songSuggest = new SongModel();
-            songSuggest.setListResult(songService.findSuggest());
+            songSuggest.setListResult(songService.findSongRankSuggest());
             SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
         }
 

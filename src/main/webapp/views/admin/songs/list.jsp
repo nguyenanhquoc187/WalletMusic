@@ -23,22 +23,6 @@
         </ul>
         <!-- /.breadcrumb -->
       </div>
-
-<%--      <form action="" >--%>
-<%--            <div class="row">--%>
-<%--        <div class="col-xs-12" style="margin: 20px 0 0 30px">--%>
-<%--          <select class="form-select" aria-label="Default select example">--%>
-<%--            <option selected>Chọn tìm kiếm theo</option>--%>
-
-<%--            <option value="title">Tên bài hát</option>--%>
-<%--            <option value="artistName">Tên nghệ sĩ</option>--%>
-<%--            <option value="albumName">Tên album</option>--%>
-<%--          </select>--%>
-<%--          <input type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="">--%>
-
-<%--          <button class="btn btn-outline-secondary" type="button">Tìm kiếm</button>--%>
-<%--                </div>--%>
-<%--        </div>--%>
 <%--      </form>--%>
 
       <form action="<c:url value='/admin-song'/>" id="formSubmit"
@@ -56,7 +40,7 @@
             </select>
               <input type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="${model.search}">
 
-              <button id="btnSearch" class="btn btn-outline-secondary" name="btnSearch" type="button">Tìm kiếm</button>
+              <button style="background-color: #be9ef8 !important; border-color: #be9ef8" id="btnSearch" class="btn btn-outline-secondary" name="btnSearch" type="button">Tìm kiếm</button>
 
             <c:if test="${not empty messageResponse}">
               <div class="alert alert-${alert}">${messageResponse}</div>
@@ -65,19 +49,24 @@
               <div class="table-btn-controls">
                 <div class="pull-right tableTools-container">
                   <div class="dt-buttons btn-overlap btn-group">
-                    <a flag="info"
-                       class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
+                    <a style="margin-left: 5px" flag="info"
+                       class="btn btn-white btn-info btn-bold"
                        data-toggle="tooltip" title='Thêm bài hát'
                        href='<c:url value="/admin-song?type=edit"/>'> <span>
-													<i class="fa fa-plus-circle bigger-110 purple"></i>
+													<i class="fa fa-plus-circle bigger-110 purple"></i>Thêm
 											</span>
                     </a>
-                    <button id="btnDelete" type="button"
-                            class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
-                            data-toggle="tooltip" title='Xóa bài hats'>
-												<span> <i class="fa fa-trash-o bigger-110 pink"></i>
-												</span>
+
+                    <button id="btnDelete" class="btn btn-white btn-warning btn-bold">
+                      <i class="ace-icon fa fa-trash-o bigger-120 orange"></i>
+                      Xoá
                     </button>
+<%--                    <button id="btnDelete" type="button"--%>
+<%--                            class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"--%>
+<%--                            data-toggle="tooltip" title='Xóa bài hats'>--%>
+<%--												<span> <i class="fa fa-trash-o bigger-110 pink"></i>--%>
+<%--												</span>--%>
+<%--                    </button>--%>
                   </div>
                 </div>
               </div>
@@ -117,10 +106,17 @@
                         <td><c:url var="editURL" value="/admin-song">
                           <c:param name="type" value="edit" />
                           <c:param name="id" value="${item.id}" />
-                        </c:url> <a class="btn btn-sm btn-primary btn-edit"
+                        </c:url>
+<%--                          <a class="btn btn-info">--%>
+<%--                            <i class="ace-icon fa fa-pencil"></i>--%>
+<%--                          </a>--%>
+
+                          <a style="background-color: #be9ef8 !important; border-color: #be9ef8" class="btn btn-info"
                                     data-toggle="tooltip" title="Cập nhật bài hát"
-                                    href='${editURL}'><i class="fa fa-pencil-square-o"
-                                                         aria-hidden="true"></i> </a></td>
+                                    href='${editURL}'>
+                            <i class="ace-icon fa fa-pencil"></i>
+                          </a>
+                        </td>
                       </tr>
                     </c:forEach>
                     </tbody>

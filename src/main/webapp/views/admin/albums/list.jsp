@@ -28,7 +28,7 @@
           <div class="col-xs-12">
             <input type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="${model.search}">
 
-            <button id="btnSearch" class="btn btn-outline-secondary" type="button">Tìm kiếm</button>
+            <button  style="background-color: #be9ef8 !important; border-color: #be9ef8" id="btnSearch" class="btn btn-outline-secondary" type="button">Tìm kiếm</button>
             <div id="alertAlbumId"></div>
 
 
@@ -37,21 +37,26 @@
             </c:if>
             <div class="widget-box table-filter">
               <div class="table-btn-controls">
-                <div class="pull-right tableTools-container">
+                <div st class="pull-right tableTools-container">
                   <div class="dt-buttons btn-overlap btn-group">
                     <a flag="info"
-                       class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
+                       class="btn btn-white btn-info btn-bold"
                        data-toggle="tooltip" title='Thêm album'
                        href='<c:url value="/admin-album?type=edit"/>'> <span>
-													<i class="fa fa-plus-circle bigger-110 purple"></i>
+													<i class="fa fa-plus-circle bigger-110 purple"></i>Thêm
 											</span>
                     </a>
-                    <button id="btnDelete" type="button"
-                            class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
-                            data-toggle="tooltip" title='Xóa album'>
-												<span> <i class="fa fa-trash-o bigger-110 pink"></i>
-												</span>
+
+                    <button id="btnDelete" class="btn btn-white btn-warning btn-bold">
+                      <i class="ace-icon fa fa-trash-o bigger-120 orange"></i>
+                      Xoá
                     </button>
+<%--                    <button id="btnDelete" type="button"--%>
+<%--                            class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"--%>
+<%--                            data-toggle="tooltip" title='Xóa album'>--%>
+<%--												<span> <i class="fa fa-trash-o bigger-110 pink"></i>--%>
+<%--												</span>--%>
+<%--                    </button>--%>
                   </div>
                 </div>
               </div>
@@ -83,8 +88,13 @@
                         <td><c:url var="editURL" value="/admin-album">
                           <c:param name="type" value="edit" />
                           <c:param name="id" value="${item.id}" />
-                        </c:url> <a class="btn btn-sm btn-primary btn-edit"
-                                    data-toggle="tooltip" title="Cập nhật bài viết"
+                        </c:url>
+
+
+
+
+                          <a style="background-color: #be9ef8 !important; border-color: #be9ef8" class="btn btn-info"
+                                    data-toggle="tooltip" title="Cập nhật albums"
                                     href='${editURL}'><i class="fa fa-pencil-square-o"
                                                          aria-hidden="true"></i> </a></td>
                       </tr>

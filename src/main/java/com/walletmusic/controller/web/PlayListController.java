@@ -26,11 +26,9 @@ public class PlayListController extends HttpServlet {
         SongModel songSuggest = new SongModel();
         if (user == null) {
             response.sendRedirect( request.getContextPath() + "/dang-nhap?action=login&message=not_login&alert=error");
-            songSuggest.setListResult(songService.findSuggest());
+            songSuggest.setListResult(songService.findSongRankSuggest());
         }
         else {
-            songSuggest.setListResult(songService.findSongSuggest(user.getId()));
-
 
 
             String action = request.getParameter("action");
@@ -58,15 +56,19 @@ public class PlayListController extends HttpServlet {
                 SongModel songModel = new SongModel();
                 songModel.setListResult(songService.findAllInPlaylist(playlistId) );
                 PlaylistModel playlistModel = playlistService.findOne(playlistId) ;
+                songSuggest.setListResult(songService.findSongPlaylistSuggest(playlistId));
+                SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
                 request.setAttribute("songModel",songModel);
                 request.setAttribute("model",playlistModel);
                 request.getRequestDispatcher("/views/web/playlistdetail.jsp").forward(request,response);
             } else {
+                songSuggest.setListResult(songService.findSongSuggest(user.getId()));
                 request.getRequestDispatcher("/views/web/playlist.jsp").forward(request,response);
+                SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
             }
         }
 
-        SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
+
 
 
     }

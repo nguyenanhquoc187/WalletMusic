@@ -36,7 +36,7 @@
     <ul class="nav nav-list">
         <li class="active">
             <a href="<c:url value="/admin-home" />">
-                <i class="menu-icon fa fa-tachometer"></i>
+                <i class="menu-icon fa fa-home"></i>
                 <span class="menu-text"> Dashboard </span>
             </a>
 

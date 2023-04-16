@@ -121,6 +121,93 @@ public class SongService implements ISongService {
     }
 
     @Override
+    public List<SongModel> findSongPlaylistSuggest(int playlistId) {
+        List<SongModel> songs = new ArrayList<>();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost("http://localhost:5000/recommend-playlist");
+        Map<String, Integer> requestBody = new HashMap<>();
+        requestBody.put("playlistId", playlistId);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonBody = null;
+        try {
+            jsonBody = mapper.writeValueAsString(requestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        StringEntity entity = new StringEntity(jsonBody, ContentType.APPLICATION_JSON);
+        httpPost.setEntity(entity);
+        CloseableHttpResponse responseAPI = null;
+        try {
+            responseAPI = httpClient.execute(httpPost);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // Đọc kết quả JSON và chuyển đổi thành đối tượng Java
+        HttpEntity responseEntity = responseAPI.getEntity();
+        String jsonResponse = null;
+        try {
+            jsonResponse = EntityUtils.toString(responseEntity);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        jsonResponse = jsonResponse.substring(jsonResponse.indexOf('['),jsonResponse.indexOf(']')+1);
+        Gson gson = new Gson();
+        int[] list_of_integers = gson.fromJson(jsonResponse, int[].class);
+        for (int i : list_of_integers) {
+            songs.add(findOneWithArtistAndAlbum(i));
+        }
+        return songs;
+    }
+
+    @Override
+    public void saveToAI(int songId) {
+        List<SongModel> songs = new ArrayList<>();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost("http://localhost:5000/song");
+        Map<String, Integer> requestBody = new HashMap<>();
+        requestBody.put("songId", songId);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonBody = null;
+        try {
+            jsonBody = mapper.writeValueAsString(requestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        StringEntity entity = new StringEntity(jsonBody, ContentType.APPLICATION_JSON);
+        httpPost.setEntity(entity);
+        CloseableHttpResponse responseAPI = null;
+        try {
+            responseAPI = httpClient.execute(httpPost);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteSongAi(int songId) {
+        List<SongModel> songs = new ArrayList<>();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost("http://localhost:5000/del-song");
+        Map<String, Integer> requestBody = new HashMap<>();
+        requestBody.put("songId", songId);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonBody = null;
+        try {
+            jsonBody = mapper.writeValueAsString(requestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        StringEntity entity = new StringEntity(jsonBody, ContentType.APPLICATION_JSON);
+        httpPost.setEntity(entity);
+        CloseableHttpResponse responseAPI = null;
+        try {
+            responseAPI = httpClient.execute(httpPost);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public int save(SongModel song) {
         return songDao.save(song);
     }
@@ -156,7 +243,7 @@ public class SongService implements ISongService {
     }
 
     @Override
-    public List<SongModel> findSuggest() {
+    public List<SongModel> findSongRankSuggest() {
         Sorter sorter = new Sorter("count_listen", "desc" );
         Pageble pageble = new PageRequest(1,5, sorter);
         return songDao.findAllWithArtistAndAlbum(pageble);

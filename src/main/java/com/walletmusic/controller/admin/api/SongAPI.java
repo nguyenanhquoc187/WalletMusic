@@ -102,8 +102,10 @@ public class SongAPI extends HttpServlet {
                         File storeFile = new File(filePath);
                         // Lưu trữ file vào đĩa cứng
                         item.write(storeFile);
-                        if (mediaUrl != null) timePlay = AudioUtil.getTotalTimeMp3File(filePath);
-
+                        if (mediaUrl != null) {
+                            timePlay = AudioUtil.getTotalTimeMp3File(filePath);
+                            if (title.equals("")) title = AudioUtil.getNameSong(filePath);
+                        }
                     } else {
                         if (item.getFieldName().equals("genresIdList") ) {
                             genresIdList.add(Integer.parseInt(item.getString()));
@@ -119,6 +121,7 @@ public class SongAPI extends HttpServlet {
                         }
                         if (item.getFieldName().equals("lyrics")) {
                             lyrics = item.getString();
+                            lyrics = lyrics.replaceAll("\r\n\r\n","\r\n");
                         }
                     }
                 }
@@ -137,6 +140,7 @@ public class SongAPI extends HttpServlet {
         song.setCountListen(0L);
         ObjectMapper mapper = new ObjectMapper();
         int id = songService.save(song);
+        songService.saveToAI(id);
         mapper.writeValue(response.getOutputStream(),songService.findOne(id));
 
     }
@@ -232,6 +236,7 @@ public class SongAPI extends HttpServlet {
                         }
                         if (item.getFieldName().equals("lyrics")) {
                             lyrics = item.getString();
+                            lyrics = lyrics.replaceAll("\r\n\r\n","\r\n");
                         }
                     }
                 }
@@ -266,6 +271,9 @@ public class SongAPI extends HttpServlet {
         response.setContentType("application/json");
         SongModel songModel =  HttpUtil.of(request.getReader()).toModel(SongModel.class);
         songService.delete(songModel.getIds());
+        for (Integer i: songModel.getIds() ) {
+            songService.deleteSongAi(i);
+        }
         mapper.writeValue(response.getOutputStream(), "{}");
     }
 }

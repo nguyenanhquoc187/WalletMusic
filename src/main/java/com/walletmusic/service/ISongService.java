@@ -16,13 +16,16 @@ public interface ISongService {
     List<SongModel> findAllByAlbumName(Pageble pageble);
     List<SongModel> findAllWithArtistAndAlbum(Pageble pageble);
     List<SongModel> findSongSuggest(int userId);
+    List<SongModel> findSongPlaylistSuggest(int playlistId);
+    void saveToAI(int songId);
+    void deleteSongAi(int songId);
     public int save(SongModel song);
     public void delete(Integer[] ids);
     public void update(SongModel updateSong);
     List<Integer> findAllAlbumId();
     List<SongModel> findAllByArtistName(Pageble pageble);
     List<SongModel> findAllByCountListen();
-    List<SongModel> findSuggest();
+    List<SongModel> findSongRankSuggest();
     List<SongModel> findAllByGenres(int genreId);
     List<SongModel> findAllInPlaylist(int playlistId);
     List<SongModel> findAllInAlbum(int albumId);

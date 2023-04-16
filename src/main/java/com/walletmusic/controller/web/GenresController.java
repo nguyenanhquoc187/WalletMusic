@@ -1,6 +1,5 @@
 package com.walletmusic.controller.web;
 
-import com.walletmusic.dao.IGenresDAO;
 import com.walletmusic.model.*;
 import com.walletmusic.service.IArtistService;
 import com.walletmusic.service.IGenresService;
@@ -32,7 +31,7 @@ public class GenresController extends HttpServlet {
         if (user != null) {;
             songSuggest.setListResult(songService.findSongSuggest(user.getId()));
         } else {
-            songSuggest.setListResult(songService.findSuggest());
+            songSuggest.setListResult(songService.findSongRankSuggest());
         }
         SessionUtil.getInstance().putValue(request, "songSuggest", songSuggest);
         SongModel songModel = new SongModel();
