@@ -285,6 +285,7 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
         String sql = "DELETE FROM songs WHERE id = ?";
         deleteGenreOf(id);
         deleteSongBy(id);
+        deleteHistoryListen(id);
         update(sql, id);
     }
 
@@ -299,6 +300,13 @@ public class SongDAO extends AbstractDAO<SongModel> implements ISongDAO {
         String sql = "DELETE FROM song_by WHERE song_id = ?";
         update(sql,id);
     }
+
+    @Override
+    public void deleteHistoryListen(int id) {
+        String sql = "DELETE FROM history_listens WHERE song_id = ?";
+        update(sql,id);
+    }
+
 
     @Override
     public List<Integer> findAllAlbumId() {

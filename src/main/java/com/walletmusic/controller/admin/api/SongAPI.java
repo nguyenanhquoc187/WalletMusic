@@ -92,19 +92,23 @@ public class SongAPI extends HttpServlet {
                         if (item.getFieldName().equals("mediaUrl")) {
                             mediaUrl =  "/template/web/assets/music/list-song/" + fileName;
                             filePath = uploadMediaDir + File.separator + fileName;
-//                            timePlay = AudioUtil.getTotalTimeMp3File(item);
                         }
 
-                        if (item.getFieldName().equals("image")) {
+                        if (item.getFieldName().equals("image") && item.getSize() != 0) {
                             image =  "/template/web/assets/img/songs/" + fileName;
                             filePath = uploadImgDir + File.separator + fileName;
                         }
-                        File storeFile = new File(filePath);
                         // Lưu trữ file vào đĩa cứng
-                        item.write(storeFile);
+                        if (item.getSize() > 0) {
+                            File storeFile = new File(filePath);
+                            item.write(storeFile);
+                        }
                         if (mediaUrl != null) {
                             timePlay = AudioUtil.getTotalTimeMp3File(filePath);
                             if (title.equals("")) title = AudioUtil.getNameSong(filePath);
+                            if (image == null) {
+                                image = AudioUtil.getImageSong(filePath);
+                            }
                         }
                     } else {
                         if (item.getFieldName().equals("genresIdList") ) {
@@ -129,6 +133,9 @@ public class SongAPI extends HttpServlet {
         } catch (Exception ex) {
             request.setAttribute("message", "There was an error: " + ex.getMessage());
         }
+
+
+
         song.setTitle(title);
         song.setGenresIdList(genresIdList);
         song.setArtistIdList(artistIdList);
@@ -161,13 +168,6 @@ public class SongAPI extends HttpServlet {
         String mediaUrl = null;
 
 
-//        if (!ServletFileUpload.isMultipartContent(request)) {
-//            // Nếu không phải thì trả về thông báo lỗi
-//            PrintWriter writer = response.getWriter();
-//            writer.println("Error: Form must have enctype=multipart/form-data.");
-//            writer.flush();
-//            return;
-//        }
 
         // Thiết lập các thông số để xử lý upload file
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -206,7 +206,6 @@ public class SongAPI extends HttpServlet {
                         if (item.getFieldName().equals("mediaUrl") ) {
                             mediaUrl =  "/template/web/assets/music/list-song/" + fileName;
                             filePath = uploadMediaDir + File.separator + fileName;
-//                            timePlay = AudioUtil.getTotalTimeMp3File(item);
                         }
 
                         if (item.getFieldName().equals("image") ) {
@@ -216,7 +215,9 @@ public class SongAPI extends HttpServlet {
                         File storeFile = new File(filePath);
                         // Lưu trữ file vào đĩa cứng
                         item.write(storeFile);
-                        if (mediaUrl != null) timePlay = AudioUtil.getTotalTimeMp3File(filePath);
+                        if (mediaUrl != null) {
+                            timePlay = AudioUtil.getTotalTimeMp3File(filePath);
+                        }
 
                     } else {
                         if (item.getFieldName().equals("id") ) {

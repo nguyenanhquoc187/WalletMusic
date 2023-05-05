@@ -38,7 +38,7 @@
               <option value="artist" ${model.searchField == 'artist' ? "selected" : ""}>Tên nghệ sĩ</option>
               <option value="album" ${model.searchField == 'album' ? "selected" : ""}>Tên album</option>
             </select>
-              <input type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="${model.search}">
+              <input  type="text" placeholder ="Tìm kiếm ..." id="search" class="" name = "search" value="${model.search}">
 
               <button style="background-color: #be9ef8 !important; border-color: #be9ef8" id="btnSearch" class="btn btn-outline-secondary" name="btnSearch" type="button">Tìm kiếm</button>
 

@@ -10,29 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1218bfb-bcde-4513-895f-a5489902b4f0" name="Changes" comment="update all">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/template/admin/assets/css/jquery-ui.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/SongAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/SongAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/AlbumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/ArtistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/ArtistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/GenresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/GenresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/PersonalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/PersonalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/PlayListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/PlayListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/RankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/RankController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/web/SongController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/ISongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/ISongService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/service/impl/SongService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/UserAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/controller/admin/api/UserAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/dao/impl/SongDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/walletmusic/utils/AudioUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/walletmusic/utils/AudioUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/admin/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/admin/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/admin/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/admin/menu.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/decorators/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/decorators/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/decorators/web.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/decorators/web.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/admin/assets/css/ace.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/admin/assets/css/ace.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/albums/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/albums/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/artists/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/artists/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/songs/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/songs/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/albumdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/albumdetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/artist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/artist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/genres.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/genres.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/personal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/personal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/playlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/playlist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/playlistdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/playlistdetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/searchResults.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/songdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/songdetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/songrank.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/songrank.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +165,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 8.5.34" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.34" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WalletMusic_war_exploded" />
       <deployment>
         <artifact name="WalletMusic:war exploded">
           <settings>
@@ -350,6 +344,14 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.main" />
+      <item itemvalue="JavaScript Debug.bangcuuchuong.jsp" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.34" />
+      <item itemvalue="Tomcat Server.bangcuuchuong.jsp" />
+      <item itemvalue="Tomcat Server.edit.jsp" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Tomcat Server.bangcuuchuong.jsp" />
@@ -412,7 +414,21 @@
       <workItem from="1681527525496" duration="1432000" />
       <workItem from="1681530028997" duration="1503000" />
       <workItem from="1681569171634" duration="6704000" />
-      <workItem from="1681646435200" duration="2759000" />
+      <workItem from="1681646435200" duration="2789000" />
+      <workItem from="1681739557079" duration="401000" />
+      <workItem from="1681780833713" duration="8000" />
+      <workItem from="1681957146659" duration="969000" />
+      <workItem from="1682179677568" duration="337000" />
+      <workItem from="1682257427427" duration="11006000" />
+      <workItem from="1682349885313" duration="4505000" />
+      <workItem from="1682508042327" duration="4918000" />
+      <workItem from="1682586994718" duration="73000" />
+      <workItem from="1682704967093" duration="1218000" />
+      <workItem from="1683128644926" duration="916000" />
+      <workItem from="1683166212166" duration="24000" />
+      <workItem from="1683166885815" duration="2501000" />
+      <workItem from="1683285746190" duration="30000" />
+      <workItem from="1683305689155" duration="56000" />
     </task>
     <task id="LOCAL-00001" summary="upload">
       <created>1680969895054</created>
@@ -442,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681311338472</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update all">
+      <created>1681662699857</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681662699857</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

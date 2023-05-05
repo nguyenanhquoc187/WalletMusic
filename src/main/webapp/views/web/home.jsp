@@ -10,25 +10,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wallet Music</title>
 
-  <link rel="icon" href="<c:url value="/template/web/assets/img/icon-home/wallet.png"/>" type="image/gif" sizes="16x16">
-  <!-- reset css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-  <!-- css grid để kết hợp chia khung và responsive -->
-  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/grid.css"/>">
-  <!-- css mấy cái chung ban đầu -->
-  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/base.css"/>">
-  <!-- css chính -->
-  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/main.css"/>">
-  <!-- css để responsive trên các thiết bị -->
-  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/responsive.css"/>">
-  <!-- nếu trình duyệt IE < 9 thì comment dưới sẽ thành code chạy dc, code scrip dước có chức năng để chạy dc media-query để responsive trên trình chuyệt thấp IE < 9 -->
-  <!--[if lt IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.1/respond.js"></script>
-  <![endif]-->
-  <!-- dùng google font roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- icon fontawesome -->
-  <link rel="stylesheet" href="<c:url value="/template/web/assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css"/>">
+<%--  <link rel="icon" href="<c:url value="/template/web/assets/img/icon-home/wallet.png"/>" type="image/gif" sizes="16x16">--%>
+<%--  <!-- reset css -->--%>
+<%--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">--%>
+<%--  <!-- css grid để kết hợp chia khung và responsive -->--%>
+<%--  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/grid.css"/>">--%>
+<%--  <!-- css mấy cái chung ban đầu -->--%>
+<%--  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/base.css"/>">--%>
+<%--  <!-- css chính -->--%>
+<%--  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/main.css"/>">--%>
+<%--  <!-- css để responsive trên các thiết bị -->--%>
+<%--  <link rel="stylesheet" href="<c:url value="/template/web/assets/css/responsive.css"/>">--%>
+<%--  <!-- nếu trình duyệt IE < 9 thì comment dưới sẽ thành code chạy dc, code scrip dước có chức năng để chạy dc media-query để responsive trên trình chuyệt thấp IE < 9 -->--%>
+<%--  <!--[if lt IE 9]>--%>
+<%--  <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.1/respond.js"></script>--%>
+<%--  <![endif]-->--%>
+<%--  <!-- dùng google font roboto -->--%>
+<%--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">--%>
+<%--  <!-- icon fontawesome -->--%>
+<%--  <link rel="stylesheet" href="<c:url value="/template/web/assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css"/>">--%>
 </head>
 <body>
 <div class="main" style="background-color: #222;">

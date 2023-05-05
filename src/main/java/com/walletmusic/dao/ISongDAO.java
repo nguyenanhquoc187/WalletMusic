@@ -29,7 +29,7 @@ public interface ISongDAO extends GenericDAO<SongModel>{
     void delete(int id);
     void deleteGenreOf(int id);
     void deleteSongBy(int id);
-
+    void deleteHistoryListen(int id);
     List<Integer> findAllAlbumId();
     int getTotalItem();
     int getTotalItemSearchArtist(String searchKeyWord);
